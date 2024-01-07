@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/anime-station-react/static/css/main.31d6cfe0.css",
+    "main.js": "/anime-station-react/static/js/main.fc6b5f3b.js",
+    "index.html": "/anime-station-react/index.html",
+    "main.fc6b5f3b.js.map": "/anime-station-react/static/js/main.fc6b5f3b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.fc6b5f3b.js"
+  ]
+}
