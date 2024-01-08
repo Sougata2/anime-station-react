@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/anime-station-react/static/css/main.31d6cfe0.css",
-    "main.js": "/anime-station-react/static/js/main.1adc67d4.js",
+    "main.css": "/anime-station-react/static/css/main.56ed2d29.css",
+    "main.js": "/anime-station-react/static/js/main.bb4b2e0d.js",
     "index.html": "/anime-station-react/index.html",
-    "main.1adc67d4.js.map": "/anime-station-react/static/js/main.1adc67d4.js.map"
+    "main.56ed2d29.css.map": "/anime-station-react/static/css/main.56ed2d29.css.map",
+    "main.bb4b2e0d.js.map": "/anime-station-react/static/js/main.bb4b2e0d.js.map"
   },
   "entrypoints": [
-    "static/css/main.31d6cfe0.css",
-    "static/js/main.1adc67d4.js"
+    "static/css/main.56ed2d29.css",
+    "static/js/main.bb4b2e0d.js"
   ]
 }
