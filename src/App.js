@@ -95,7 +95,7 @@ function Header() {
 
 function AnimeCard({ image_url, title, url }) {
   return (
-    <div className="col" style={{ padding: "2rem" }}>
+    <div className="col" style={{ padding: "2rem 1rem" }}>
       <div className="horizontal-card card mx-auto">
         <div className="horizontal-card-img">
           <img src={image_url} alt="..." className="" />
@@ -108,7 +108,7 @@ function AnimeCard({ image_url, title, url }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Know More &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Know More <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
       </div>
