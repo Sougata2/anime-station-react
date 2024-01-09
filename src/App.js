@@ -151,7 +151,7 @@ class AnimeList extends React.Component {
       );
 
     return (
-      <div className="container">
+      <div className="container-fluid">
         <div className="row row-cols-1 row-cols-md-2">
           {data.map((anime) => (
             <AnimeCard
