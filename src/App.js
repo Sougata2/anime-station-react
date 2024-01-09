@@ -95,19 +95,20 @@ function Header() {
 
 function AnimeCard({ image_url, title, url }) {
   return (
-    <div className="col" style={{ margin: "0", padding:"2rem" }}>
-      <div className="card mx-auto" style={{ width: "18rem", height: "35rem" }}>
-        <img src={image_url} className="card-img-top" alt="..." style={{width: "100%", height:"25rem"}}/>
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text"></p>
+    <div className="col" style={{ padding: "2rem" }}>
+      <div className="horizontal-card card mx-auto">
+        <div className="horizontal-card-img">
+          <img src={image_url} alt="..." className="" />
+        </div>
+        <div className="horizontal-card-body">
+          <div className="horizontal-card-text card-title">{title}</div>
           <a
             href={url}
-            className="btn btn-primary"
+            className="btn btn-primary horizontal-card-button"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Know More &#10138;
+            Know More &nbsp;<i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
       </div>
