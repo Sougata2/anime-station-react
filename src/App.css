@@ -64,7 +64,7 @@
 .episode-list{
   position: absolute;
   z-index: 100;
-  width: 30rem;
+  /* width: 20rem; */
   transform: translateY(-100px);
   border-radius: 0 0 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
