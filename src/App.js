@@ -9,7 +9,6 @@ const urls = {
   season_anime: "https://api.jikan.moe/v4/seasons/{year}/{season}",
   random_anime: "https://api.jikan.moe/v4/random/anime",
 };
-
 function App() {
   return (
     <div>
@@ -18,7 +17,6 @@ function App() {
     </div>
   );
 }
-
 function Header() {
   return (
     <header>
@@ -92,11 +90,18 @@ function Header() {
     </header>
   );
 }
-
-function AnimeCard({ image_url, title, url }) {
+function AnimeCard({ image_url, title, url, episodes }) {
+  function handleEpList(e){
+    console.log(e.target.closest("#anime-col"));
+    const epList = e.target.closest("#anime-col").querySelector('.episode-list');
+    epList.style.transform = epList.style.transform === 'translateY(0px)' ? 'translateY(-100px)' : 'translateY(0px)';
+  }
   return (
-    <div className="col" style={{ padding: "2rem 1rem" }}>
-      <div className="horizontal-card card mx-auto">
+    <div className="col" id="anime-col" style={{ padding: "2rem 1rem" }}>
+      <div
+        className="horizontal-card card mx-auto"
+        onClick={(e) => handleEpList(e)}
+      >
         <div className="horizontal-card-img">
           <img src={image_url} alt="..." className="" />
         </div>
@@ -108,10 +113,31 @@ function AnimeCard({ image_url, title, url }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Know More <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            Know More <i className="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
       </div>
+      <EpisodeList episodes={episodes} />
+    </div>
+  );
+}
+function EpisodeList({ episodes }) {
+  return (
+    <div className="episode-list">
+      {episodes.map((episode) => (
+        <Episode episode={episode}  key={episode.mal_id}/>
+      ))}
+    </div>
+  );
+}
+function Episode({ episode }) {
+  return (
+    <div className="episode">
+      <a href={episode.url} target="_blank" rel="noopener noreferrer">
+        {episode.title}
+      </a>
+      &nbsp;&nbsp;
+      <span>{episode.premium ? "👑" : ""}</span>
     </div>
   );
 }
@@ -125,7 +151,6 @@ class AnimeList extends React.Component {
       DataisLoaded: false,
     };
   }
-
   // ComponentDidMount is used to
   // execute the code
   componentDidMount() {
@@ -159,6 +184,7 @@ class AnimeList extends React.Component {
               image_url={anime.entry.images.jpg.image_url}
               title={anime.entry.title}
               url={anime.entry.url}
+              episodes={anime.episodes}
             />
           ))}
         </div>
@@ -166,5 +192,4 @@ class AnimeList extends React.Component {
     );
   }
 }
-
 export default App;
