@@ -92,7 +92,6 @@ function Header() {
 }
 function AnimeCard({ image_url, title, url, episodes }) {
   function handleEpList(e){
-    console.log(e.target.closest("#anime-col"));
     const epList = e.target.closest("#anime-col").querySelector('.episode-list');
     epList.style.transform = epList.style.transform === 'translateY(0px)' ? 'translateY(-100px)' : 'translateY(0px)';
   }

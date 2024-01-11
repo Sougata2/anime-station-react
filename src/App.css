@@ -54,6 +54,9 @@
   left: 1rem;
   margin-bottom: 0.5rem;
 }
+#anime-col{
+  position: relative;;
+}
 .episode{
   display: inline;
   padding: 10px;
@@ -65,6 +68,8 @@
   position: absolute;
   z-index: 100;
   /* width: 20rem; */
+  display: inline;
+  right: 2rem;
   transform: translateY(-100px);
   border-radius: 0 0 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
