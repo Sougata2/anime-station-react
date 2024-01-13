@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 const urls = {
-  recent_episodes_url: "https://api.jikan.moe/v4/watch/episodes",
+  getWatchRecentEpisodes: "https://api.jikan.moe/v4/watch/episodes",
   anime_genres_url: "https://myanimelist.net/anime/genre/1/Action",
   anime_recomendations_url: "https://api.jikan.moe/v4/recommendations/anime",
   top_anime_url: "https://api.jikan.moe/v4/top/anime",
@@ -93,7 +93,7 @@ function Header() {
 function AnimeCard({ image_url, title, url, episodes }) {
   function handleEpList(e){
     const epList = e.target.closest("#anime-col").querySelector('.episode-list');
-    epList.style.transform = epList.style.transform === 'translateY(0px)' ? 'translateY(-100px)' : 'translateY(0px)';
+    epList.style.transform = epList.style.transform === 'translateY(0px)' ? 'translateY(-70px)' : 'translateY(0px)';
   }
   return (
     <div className="col" id="anime-col" style={{ padding: "2rem 1rem" }}>
@@ -153,7 +153,7 @@ class AnimeList extends React.Component {
   // ComponentDidMount is used to
   // execute the code
   componentDidMount() {
-    fetch(urls.recent_episodes_url)
+    fetch(urls.getWatchRecentEpisodes)
       .then((res) => res.json())
       .then((json) => {
         this.setState({
