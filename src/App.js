@@ -21,7 +21,7 @@ function Header() {
   return (
     <header>
       <nav
-        className="navbar navbar-expand-lg"
+        className="navbar fixed-top navbar-expand-lg"
         data-bs-theme="dark"
         style={{ backgroundColor: "#712cf9" }}
       >
@@ -175,7 +175,7 @@ class AnimeList extends React.Component {
       );
 
     return (
-      <div className="container-fluid">
+      <div className="container-fluid card-list">
         <div className="row row-cols-1 row-cols-md-2">
           {data.map((anime) => (
             <AnimeCard

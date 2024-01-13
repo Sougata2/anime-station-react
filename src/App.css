@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-
+.card-list{
+  margin: 3rem 0 0 0;
+}
 .card {
   font-family: "Ubuntu", sans-serif;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
