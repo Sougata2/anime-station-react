@@ -1,32 +1,77 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import GetWatchRecentEpisodes from "../src/GetWatchRecentEpisodes";
+import GetAnimeGenres from "../src/getAnimeGenres";
+import GetRandomAnime from "../src/getRandomAnime";
+import GetRecentAnimeRecommendations from "../src/getRecentAnimeRecommendations";
+import GetSeason from "../src/getSeason";
+import GetSeasonNow from "../src/getSeasonNow";
+import GetTopAnime from "../src/getTopAnime";
+import ErrorPage from "../src/ErrorPage";
+
 const urls = {
   getWatchRecentEpisodes: "https://api.jikan.moe/v4/watch/episodes",
-  anime_genres_url: "https://myanimelist.net/anime/genre/1/Action",
-  anime_recomendations_url: "https://api.jikan.moe/v4/recommendations/anime",
-  top_anime_url: "https://api.jikan.moe/v4/top/anime",
-  season_now_anime: "https://api.jikan.moe/v4/seasons/now",
-  season_anime: "https://api.jikan.moe/v4/seasons/{year}/{season}",
-  random_anime: "https://api.jikan.moe/v4/random/anime",
+  getAnimeGenres: "https://myanimelist.net/anime/genre/1/Action",
+  getRecentAnimeRecommendations:
+    "https://api.jikan.moe/v4/recommendations/anime",
+  getTopAnime: "https://api.jikan.moe/v4/top/anime",
+  getSeasonNow: "https://api.jikan.moe/v4/seasons/now",
+  getSeason: "https://api.jikan.moe/v4/seasons/{year}/{season}",
+  getRandomAnime: "https://api.jikan.moe/v4/random/anime",
 };
+
 function App() {
+  let main_page;
+  const [section, setSection] = useState(0);
+  console.log(section);
+
+  switch (section) {
+    case 0:
+      main_page = <GetWatchRecentEpisodes />;
+      break;
+    case 1:
+      main_page = <GetAnimeGenres />;
+      break;
+    case 2:
+      main_page = <GetSeasonNow />;
+      break;
+    case 3:
+      main_page = <GetSeason />;
+      break;
+    case 4:
+      main_page = <GetRandomAnime />;
+      break;
+    case 5:
+      main_page = <GetTopAnime />;
+      break;
+    case 6:
+      main_page = <GetRecentAnimeRecommendations />;
+      break;
+    default:
+      main_page = <ErrorPage />;
+  }
+
   return (
     <div>
-      <Header />
-      <AnimeList />
+      <Header section={section} setSection={setSection} />
+      {main_page}
     </div>
   );
 }
-function Header() {
+function Header({ section, setSection }) {
   return (
     <header>
       <nav
-        className="navbar fixed-top navbar-expand-lg"
+        className="navbar navbar-expand-lg"
         data-bs-theme="dark"
         style={{ backgroundColor: "#712cf9" }}
       >
         <div className="container">
-          <a className="navbar-brand" href="/">
+          <a
+            className="navbar-brand"
+            type="button"
+            onClick={() => setSection(0)}
+          >
             Anime Station
           </a>
           <button
@@ -43,45 +88,68 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
+                <a
+                  className={`nav-link ${section === 0 ? "active" : ""}`}
+                  aria-current="page"
+                  type="button"
+                  onClick={() => setSection(0)}
+                >
+                  Recent Episodes
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Link
+                <a
+                  className={`nav-link ${section === 1 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(1)}
+                >
+                  Anime Genres
                 </a>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
                 <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  className={`nav-link ${section === 2 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(2)}
                 >
-                  Dropdown
+                  Season Now
                 </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${section === 3 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(3)}
+                >
+                  Season
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${section === 4 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(4)}
+                >
+                  Random Anime
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${section === 5 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(5)}
+                >
+                  Top Anime
+                </a>
+              </li>
+              <li className="nav-item">
+                <a
+                  className={`nav-link ${section === 6 ? "active" : ""}`}
+                  type="button"
+                  onClick={() => setSection(6)}
+                >
+                  Recent Anime
+                </a>
               </li>
             </ul>
           </div>
@@ -90,105 +158,5 @@ function Header() {
     </header>
   );
 }
-function AnimeCard({ image_url, title, url, episodes }) {
-  function handleEpList(e){
-    const epList = e.target.closest("#anime-col").querySelector('.episode-list');
-    epList.style.transform = epList.style.transform === 'translateY(0px)' ? 'translateY(-70px)' : 'translateY(0px)';
-  }
-  return (
-    <div className="col" id="anime-col" style={{ padding: "2rem 1rem" }}>
-      <div
-        className="horizontal-card card mx-auto"
-        onClick={(e) => handleEpList(e)}
-      >
-        <div className="horizontal-card-img">
-          <img src={image_url} alt="..." className="" />
-        </div>
-        <div className="horizontal-card-body">
-          <div className="horizontal-card-text card-title">{title}</div>
-          <a
-            href={url}
-            className="btn btn-primary horizontal-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Know More <i className="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </div>
-      <EpisodeList episodes={episodes} />
-    </div>
-  );
-}
-function EpisodeList({ episodes }) {
-  return (
-    <div className="episode-list">
-      {episodes.map((episode) => (
-        <Episode episode={episode}  key={episode.mal_id}/>
-      ))}
-    </div>
-  );
-}
-function Episode({ episode }) {
-  return (
-    <div className="episode">
-      <a href={episode.url} target="_blank" rel="noopener noreferrer">
-        {episode.title}
-      </a>
-      &nbsp;&nbsp;
-      <span>{episode.premium ? "👑" : ""}</span>
-    </div>
-  );
-}
-class AnimeList extends React.Component {
-  // Constructor
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      items: [],
-      DataisLoaded: false,
-    };
-  }
-  // ComponentDidMount is used to
-  // execute the code
-  componentDidMount() {
-    fetch(urls.getWatchRecentEpisodes)
-      .then((res) => res.json())
-      .then((json) => {
-        this.setState({
-          items: json,
-          DataisLoaded: true,
-        });
-      });
-  }
-  render() {
-    const {
-      DataisLoaded,
-      items: { data, pagination },
-    } = this.state;
-    if (!DataisLoaded)
-      return (
-        <div>
-          <h1> Pleses wait some time.... </h1>
-        </div>
-      );
-
-    return (
-      <div className="container-fluid card-list">
-        <div className="row row-cols-1 row-cols-md-2">
-          {data.map((anime) => (
-            <AnimeCard
-              key={anime.entry.mal_id}
-              image_url={anime.entry.images.jpg.image_url}
-              title={anime.entry.title}
-              url={anime.entry.url}
-              episodes={anime.episodes}
-            />
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
 export default App;
