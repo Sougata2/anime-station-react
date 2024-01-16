@@ -22,21 +22,33 @@ export default class GetSeasonNow extends React.Component {
         });
       });
   }
+
+  componentDidUpdate(prevProp, prevState) {
+    if (this.state.page !== prevState.page) {
+      fetch(url.replace("{%PAGE%}", this.state.page))
+        .then((res) => res.json())
+        .then((json) => {
+          this.setState({
+            items: json,
+            DataisLoaded: true,
+          });
+        });
+    }
+  }
   goToNext() {
-    if (this.state.items.pagination.has_next_page)
-      this.setState({
-        page:
-          this.state.page === this.state.items.pagination.last_visible_page
-            ? 1
-            : this.state.page + 1,
-      });
-    this.componentDidMount();
+    if (this.state.items.pagination.has_next_page) {
+      this.setState((prevState) => ({ page: prevState.page + 1 }));
+    } else {
+      this.setState((prevState) => ({ page: 1 }));
+    }
   }
   goToPrevious() {
-    if (this.state.items.pagination.current_page === 1)
-      this.setState({ page: this.state.items.pagination.last_visible_page });
-    else this.setState({ page: this.state.page - 1 });
-    this.componentDidMount();
+    if (this.state.items.pagination.current_page === 1){
+      this.setState((prevState) => ({ page: this.state.items.pagination.items.total}))
+    }
+    else{
+      this.setState((prevState) => ({page: prevState.page - 1}))
+    }
   }
   render() {
     const {
@@ -56,7 +68,7 @@ export default class GetSeasonNow extends React.Component {
       <div className="container-fluid card-list section-start">
         <div className="row row-cols-1 row-cols-md-2">
           {data.map((anime) => (
-            <AnimeCard anime={anime} />
+            <AnimeCard anime={anime} key={anime.mal_id} />
           ))}
         </div>
         <button className="btn btn-primary" onClick={() => this.goToPrevious()}>

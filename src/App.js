@@ -23,7 +23,6 @@ const urls = {
 function App() {
   let main_page;
   const [section, setSection] = useState(0);
-  console.log(section);
 
   switch (section) {
     case 0:
