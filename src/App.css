@@ -17,8 +17,18 @@
 
 .card-text {
   font-weight: bold;
+  height: 6rem;  
+  overflow-y: scroll;
 }
-
+.page-btn{
+  margin: 1rem 2rem;
+  font-size: 3rem;
+  color: #dddd;
+}
+.page-btn:hover{
+  color: #111;
+  transition: 0.3s ease-in;
+}
 .hidden {
   display: none;
 }
