@@ -92,3 +92,56 @@
   padding: 15px 0 10px 2px;
   transition: 0.4s ease-in-out;
 }
+/* Neomorphism Anime Card */
+.anime-card {
+  position: relative;
+  display: grid;
+  height: 15rem;
+  background-color: #dddd;
+  border-radius: 10px;
+  grid-template-columns: 10rem auto;
+}
+.anime-card-left,
+.anime-card-right {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  display: inline-block;
+}
+.anime-card-image {
+  height: calc(100% - 1rem);
+  width: calc(100% - 1rem);
+  margin: 0.5rem 0 0.5rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+.anime-card-title {
+  margin: 1rem 0.5rem 0 0.5rem;
+  height: 1.5rem;
+  padding: 5px;
+  width: fit-content;
+  min-width: auto;
+  overflow-y: scroll;
+  /* overflow-x: scroll; */
+  border-radius: 10px;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+.anime-card-body {
+  height: 40%;
+  margin: 1rem 0.5rem 0 0.5rem;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding: 9px 9px 0 11px;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+.anime-card-button {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 1rem;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
+  border-radius: 30em;
+  text-decoration: none;
+  color: black;
+  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
