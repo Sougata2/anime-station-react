@@ -13,6 +13,7 @@ export default class GetSeasonNow extends React.Component {
   }
 
   componentDidMount() {
+    console.log(url.replace("{%PAGE%}", this.state.page));
     fetch(url.replace("{%PAGE%}", this.state.page))
       .then((res) => res.json())
       .then((json) => {
@@ -25,6 +26,7 @@ export default class GetSeasonNow extends React.Component {
 
   componentDidUpdate(prevProp, prevState) {
     if (this.state.page !== prevState.page) {
+      console.log(url.replace("{%PAGE%}", this.state.page));
       fetch(url.replace("{%PAGE%}", this.state.page))
         .then((res) => res.json())
         .then((json) => {
@@ -45,7 +47,7 @@ export default class GetSeasonNow extends React.Component {
   goToPrevious() {
     if (this.state.items.pagination.current_page === 1) {
       this.setState((prevState) => ({
-        page: this.state.items.pagination.items.total,
+        page: this.state.items.pagination.last_visible_page,
       }));
     } else {
       this.setState((prevState) => ({ page: prevState.page - 1 }));
@@ -66,7 +68,10 @@ export default class GetSeasonNow extends React.Component {
     }
 
     return (
-      <div className="container-fluid card-list section-start" style={{padding: "1rem"}}>
+      <div
+        className="container-fluid card-list section-start"
+        style={{ padding: "1rem" }}
+      >
         <div className="row row-cols-1 row-cols-md-1">
           {data.map((anime) => (
             <AnimeCard anime={anime} key={anime.mal_id} />
@@ -93,7 +98,7 @@ function AnimeCard({
     broadcast,
     duration,
     episodes,
-    genre,
+    genres,
     images,
     rating,
     season,
@@ -107,7 +112,34 @@ function AnimeCard({
 }) {
   return (
     <div className="col">
-      <div className="card mx-auto" style={{ width: "18rem", height: "35rem" }}>
+      <div className="anime-card mx-auto">
+        <div className="anime-card-left">
+          <img src={images.jpg.image_url} alt="" className="anime-card-image" />
+        </div>
+        <div className="anime-card-right">
+          <div className="anime-card-title">{title}</div>
+          <div className="anime-card-div">
+            <span className="anime-card-div-key">Status : </span>
+            {status}
+          </div>
+          {/* <div className="anime-card-div"><span>Aired : </span>{aired.string}</div> */}
+          <div className="anime-card-div">
+            <span>Generes : </span>
+            {genres.map((genre) => (
+              <i className="" key={genre.mal_id}>{genre.name}, </i>
+            ))}
+          </div>
+          <a
+            href={url}
+            className="anime-card-button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Go
+          </a>
+        </div>
+      </div>
+      {/* <div className="card mx-auto" style={{ width: "18rem", height: "35rem" }}>
         <img
           src={images.jpg.image_url}
           className="card-img-top"
@@ -121,7 +153,7 @@ function AnimeCard({
             Go <i className="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
