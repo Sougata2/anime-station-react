@@ -102,6 +102,7 @@
   background-color: #dddd;
   border-radius: 10px;
   grid-template-columns: 10rem auto;
+  font-family: "Ubuntu", sans-serif;
 }
 .anime-card-left,
 .anime-card-right {
