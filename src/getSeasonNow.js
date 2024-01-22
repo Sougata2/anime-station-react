@@ -110,25 +110,17 @@ function AnimeCard({
     url,
   },
 }) {
+  const next_episode = new Date(aired.from);
+  console.log(next_episode.toLocaleString("en-US", {
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+  }));
   return (
     <div className="col">
       <div className="anime-card mx-auto">
         <div className="anime-card-left">
           <img src={images.jpg.image_url} alt="" className="anime-card-image" />
-        </div>
-        <div className="anime-card-right">
-          <div className="anime-card-title">{title}</div>
-          <div className="anime-card-div">
-            <span className="anime-card-div-key">Status : </span>
-            {status}
-          </div>
-          {/* <div className="anime-card-div"><span>Aired : </span>{aired.string}</div> */}
-          <div className="anime-card-div">
-            <span>Generes : </span>
-            {genres.map((genre) => (
-              <i className="" key={genre.mal_id}>{genre.name}, </i>
-            ))}
-          </div>
           <a
             href={url}
             className="anime-card-button"
@@ -138,22 +130,36 @@ function AnimeCard({
             Go
           </a>
         </div>
-      </div>
-      {/* <div className="card mx-auto" style={{ width: "18rem", height: "35rem" }}>
-        <img
-          src={images.jpg.image_url}
-          className="card-img-top"
-          alt="..."
-          style={{ width: "18rem", height: "20rem" }}
-        />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{synopsis}</p>
-          <a href={url} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            Go <i className="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
+        <div className="anime-card-right">
+          <div className="anime-card-title">{title}</div>
+          <div className="anime-card-div">
+            <span className="anime-card-div-key">Status : </span>
+            {status}
+          </div>
+          {/* <div className="anime-card-div"><span>Aired : </span>{aired.string}</div> */}
+          {/* <div className="anime-card-div">
+            <span>Aired : </span>
+            {aired.string}
+          </div> */}
+          <div className="anime-card-div">
+            <span>Next Episode : </span>
+            {broadcast.day},{" "}
+            {next_episode.getHours()}:{next_episode.getMinutes()} {next_episode.getHours() >= 12 ? "PM" : "AM"}
+          </div>
+          <div className="anime-card-div">
+            <span>Episodes : </span>
+            {episodes}
+          </div>
+          <div className="anime-card-div">
+            <span>Generes : </span>
+            {genres.map((genre) => (
+              <i className="" key={genre.mal_id}>
+                {genre.name},{" "}
+              </i>
+            ))}
+          </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

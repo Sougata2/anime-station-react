@@ -97,7 +97,7 @@
 .anime-card {
   position: relative;
   display: grid;
-  height: 18rem;
+  height: 20rem;
   max-width: 35rem;
   background-color: #dddd;
   border-radius: 10px;
@@ -109,6 +109,10 @@
   width: inherit;
   height: inherit;
   display: inline-block;
+}
+.anime-card-left {
+  display: grid;
+  grid-template-rows: 14rem auto;
 }
 .anime-card-image {
   height: calc(100% - 1rem);
