@@ -13,7 +13,6 @@ export default class GetSeasonNow extends React.Component {
   }
 
   componentDidMount() {
-    console.log(url.replace("{%PAGE%}", this.state.page));
     fetch(url.replace("{%PAGE%}", this.state.page))
       .then((res) => res.json())
       .then((json) => {
@@ -26,7 +25,6 @@ export default class GetSeasonNow extends React.Component {
 
   componentDidUpdate(prevProp, prevState) {
     if (this.state.page !== prevState.page) {
-      console.log(url.replace("{%PAGE%}", this.state.page));
       fetch(url.replace("{%PAGE%}", this.state.page))
         .then((res) => res.json())
         .then((json) => {
