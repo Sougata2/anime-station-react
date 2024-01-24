@@ -113,7 +113,7 @@
 }
 .anime-card-left {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: 16rem auto;
   row-gap: 1.5rem;
 }
 .anime-card-image {
