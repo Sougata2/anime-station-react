@@ -109,11 +109,6 @@ function AnimeCard({
   },
 }) {
   const next_episode = new Date(aired.from);
-  console.log(next_episode.toLocaleString("en-US", {
-    hour12: false,
-    hour: "numeric",
-    minute: "numeric",
-  }));
   return (
     <div className="col">
       <div className="anime-card mx-auto">
