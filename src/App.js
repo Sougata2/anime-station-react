@@ -23,6 +23,7 @@ const urls = {
 function App() {
   let main_page;
   const [section, setSection] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   console.log("section -> ", section);
 
   switch (section) {
@@ -53,12 +54,17 @@ function App() {
 
   return (
     <div>
-      <Header section={section} setSection={setSection} />
+      <Header
+        section={section}
+        setSection={setSection}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
+      />
       {main_page}
     </div>
   );
 }
-function Header({ section, setSection }) {
+function Header({ section, setSection, isExpanded, setIsExpanded }) {
   return (
     <header>
       <nav
@@ -75,24 +81,30 @@ function Header({ section, setSection }) {
             Anime Station
           </a>
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler ${isExpanded ? "" : "collapsed"}`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-expanded={isExpanded ? "true" : "false"}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className={`collapse navbar-collapse ${isExpanded}`}
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a
                   className={`nav-link ${section === 0 ? "active" : ""}`}
                   aria-current="page"
                   type="button"
-                  onClick={() => setSection(0)}
+                  onClick={() => {
+                    setSection(0);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Recent Episodes
                 </a>
@@ -101,7 +113,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 1 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(1)}
+                  onClick={() => {
+                    setSection(1);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Anime Genres
                 </a>
@@ -110,7 +125,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 2 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(2)}
+                  onClick={() => {
+                    setSection(2);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Season Now
                 </a>
@@ -119,7 +137,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 3 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(3)}
+                  onClick={() => {
+                    setSection(3);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Season
                 </a>
@@ -128,7 +149,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 4 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(4)}
+                  onClick={() => {
+                    setSection(4);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Random Anime
                 </a>
@@ -137,7 +161,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 5 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(5)}
+                  onClick={() => {
+                    setSection(5);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Top Anime
                 </a>
@@ -146,7 +173,10 @@ function Header({ section, setSection }) {
                 <a
                   className={`nav-link ${section === 6 ? "active" : ""}`}
                   type="button"
-                  onClick={() => setSection(6)}
+                  onClick={() => {
+                    setSection(6);
+                    setIsExpanded(!isExpanded);
+                  }}
                 >
                   Recent Anime
                 </a>
