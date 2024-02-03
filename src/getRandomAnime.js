@@ -1,4 +1,5 @@
 import React from "react";
+import error_image from "../src/images/error_image.jpg";
 const url = "https://api.jikan.moe/v4/random/anime";
 
 export default class GetRandomAnime extends React.Component {
@@ -27,7 +28,6 @@ export default class GetRandomAnime extends React.Component {
       fetch(url)
         .then((res) => res.json())
         .then((json) => {
-          console.log(json);
           this.setState({
             items: json,
             DataisLoaded: true,
@@ -97,25 +97,61 @@ export default class GetRandomAnime extends React.Component {
 // }
 
 function AnimeCard(anime) {
-  const {
-    anime: {
-      aired,
-      airing,
-      broadcast,
-      duration,
-      episodes,
-      genres,
-      images,
-      rating,
-      season,
-      status,
-      synopsis,
-      title,
-      trailer,
-      type,
-      url,
-    },
-  } = anime;
+  try {
+    var {
+      anime: {
+        aired,
+        airing,
+        broadcast,
+        duration,
+        episodes,
+        genres,
+        images,
+        rating,
+        season,
+        status,
+        synopsis,
+        title,
+        trailer,
+        type,
+        url,
+      },
+    } = anime;
+  } catch (error) {
+    // console.log("Error => ",anime);
+    return (
+      <div className="col">
+        <div className="anime-card mx-auto">
+          <div className="anime-card-left">
+            <img src={error_image} alt="" className="anime-card-image" />
+            <a
+              href="?"
+              className="anime-card-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Go
+            </a>
+          </div>
+          <div className="anime-card-right">
+            <div className="anime-card-title">No title</div>
+            <div className="anime-card-div">
+              <span className="anime-card-div-key">Status : No status</span>
+            </div>
+            <div className="anime-card-div">
+              <span>Duration : NA</span>
+            </div>
+            <div className="anime-card-div">
+              <span>Episodes : NA</span>
+            </div>
+            <div className="anime-card-div">
+              <span>Generes : NA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const next_episode = new Date(aired?.from);
   const blur_image = { filter: "blur(8px)" };
