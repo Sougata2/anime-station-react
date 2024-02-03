@@ -27,6 +27,7 @@ export default class GetRandomAnime extends React.Component {
       fetch(url)
         .then((res) => res.json())
         .then((json) => {
+          console.log(json);
           this.setState({
             items: json,
             DataisLoaded: true,
@@ -95,31 +96,41 @@ export default class GetRandomAnime extends React.Component {
 //   );
 // }
 
-function AnimeCard({
-  anime: {
-    aired,
-    airing,
-    broadcast,
-    duration,
-    episodes,
-    genres,
-    images,
-    rating,
-    season,
-    status,
-    synopsis,
-    title,
-    trailer,
-    type,
-    url,
-  },
-}) {
-  const next_episode = new Date(aired.from);
+function AnimeCard(anime) {
+  const {
+    anime: {
+      aired,
+      airing,
+      broadcast,
+      duration,
+      episodes,
+      genres,
+      images,
+      rating,
+      season,
+      status,
+      synopsis,
+      title,
+      trailer,
+      type,
+      url,
+    },
+  } = anime;
+
+  const next_episode = new Date(aired?.from);
+  const blur_image = { filter: "blur(8px)" };
+  const is_hentai =
+    genres.filter((genre) => genre.name.toLowerCase() === "hentai").length > 0;
   return (
     <div className="col">
       <div className="anime-card mx-auto">
         <div className="anime-card-left">
-          <img src={images.jpg.image_url} alt="" className="anime-card-image" />
+          <img
+            src={images.jpg.image_url}
+            alt=""
+            className="anime-card-image"
+            style={is_hentai ? blur_image : {}}
+          />
           <a
             href={url}
             className="anime-card-button"
