@@ -17,15 +17,15 @@
 
 .card-text {
   font-weight: bold;
-  height: 6rem;  
+  height: 6rem;
   overflow-y: scroll;
 }
-.page-btn{
+.page-btn {
   margin: 1rem 2rem;
   font-size: 3rem;
   color: #dddd;
 }
-.page-btn:hover{
+.page-btn:hover {
   color: #111;
   transition: 0.3s ease-in;
 }
@@ -43,7 +43,7 @@
   border-radius: 10px;
   max-height: 200px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
-  rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
   z-index: 101;
 }
 .horizontal-card-img {
@@ -69,17 +69,17 @@
   left: 1rem;
   margin-bottom: 0.5rem;
 }
-#anime-col{
-  position: relative;;
+#anime-col {
+  position: relative;
 }
-.episode{
+.episode {
   display: inline;
   padding: 10px;
 }
 /* .episode-list-toggle{
   transform: translateY(-80px);
 } */
-.episode-list{
+.episode-list {
   position: absolute;
   z-index: 100;
   /* width: 20rem; */
@@ -88,7 +88,7 @@
   transform: translateY(-70px);
   border-radius: 0 0 10px 10px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px,
-  rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    rgba(0, 0, 0, 0.05) 0px 5px 10px;
   padding: 15px 0 10px 2px;
   transition: 0.4s ease-in-out;
 }
@@ -150,10 +150,10 @@
   border-radius: 10px;
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
-.anime-card-div span{
+.anime-card-div span {
   font-weight: bold;
 }
-.anime-card-genre{
+.anime-card-genre {
   display: inline-flex;
   margin: 1rem 0.1rem 0 0.5rem;
   /* height: 2rem; */
@@ -172,4 +172,21 @@
   text-decoration: none;
   color: black;
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.btn-rotate-once{
+  animation: rotateAnimation 1s ease;
+}
+
+.btn-rotate {
+  animation: rotateAnimation 1s ease;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

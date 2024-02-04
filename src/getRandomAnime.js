@@ -59,9 +59,15 @@ export default class GetRandomAnime extends React.Component {
         <div className="text-center">
           <i
             className="fa-solid fa-rotate-right page-btn"
-            onClick={() =>
-              this.setState((prevState) => ({ refresh: !prevState.refresh }))
-            }
+            onClick={(e) => {
+              this.setState((prevState) => ({ refresh: !prevState.refresh }));
+              // Button Rotate animation //
+              e.target.classList.add("btn-rotate");
+              setTimeout(function () {
+                e.target.classList.remove("btn-rotate");
+              }, 900);
+              ////////////////////////////
+            }}
           ></i>
         </div>
       </div>
