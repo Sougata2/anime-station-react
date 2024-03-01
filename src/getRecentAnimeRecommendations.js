@@ -1,44 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const url = "https://api.jikan.moe/v4/recommendations/anime";
+// const url = "https://api.jikan.moe/v4/recommendations/anime";
+const url = "https://api-aniwatch.onrender.com/anime/schedule?date=";
+const info = "https://api-aniwatch.onrender.com/anime/info?id=";
 
-export default class GetRecentAnimeRecommendations extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        items: [],
-        DataisLoaded: false,
-      };
-    }
-  
-    componentDidMount() {
-      fetch(url)
-        .then((res) => res.json())
-        .then((json) => {
-          this.setState({
-            items: json,
-            DataisLoaded: true,
-          });
-        });
-    }
-    render() {
-      const {
-        items: { data, pagination },
-        DataisLoaded,
-      } = this.state;
-      if (!DataisLoaded) {
-        return (
-          <div className="section-start">
-            <h1> Pleses wait some time.... </h1>
-          </div>
-        );
+export default function GetRecentAnimeRecommendations() {
+  const [month, date, year] = new Date()
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .split("/");
+  const [today, setToday] = useState(`${year}-${month}-${date}`);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  useEffect(
+    function () {
+      async function getResponse() {
+        setIsLoading(true);
+        console.log(url + today);
+        const res = await fetch(url + today);
+        const data = await res.json();
+        console.log(data.scheduledAnimes);
+        setData(data.scheduledAnimes);
+        setIsLoading(false);
       }
-      return (
-        <div className="container-fluid card-list section-start">
-          <div className="row row-cols-1 row-cols-md-2">
-            <h1>Recent Anime Recommendations</h1>
-          </div>
-        </div>
-      );
-    }
-  }
+      getResponse();
+    },
+    [today]
+  );
+
+  return (
+    <>
+      {data.map((anime) => (
+        <AnimeCard data={anime} key={anime.id} />
+      ))}
+    </>
+  );
+}
+
+function AnimeCard({ data }) {
+  const { name, jname, time, id } = data;
+  
+  return (
+    <>
+      <div>{name}</div>
+      <div>{time}</div>
+      {/* <div>{anime?.info.poster}</div> */}
+    </>
+  );
+}
