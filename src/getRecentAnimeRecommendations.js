@@ -34,21 +34,32 @@ export default function GetRecentAnimeRecommendations() {
 
   return (
     <>
-      {data.map((anime) => (
-        <AnimeCard data={anime} key={anime.id} />
-      ))}
+      {isLoading && <Loader />}
+      {!isLoading &&
+        data.map((anime) => <AnimeCard data={anime} key={anime.id} />)}
     </>
   );
 }
 
 function AnimeCard({ data }) {
   const { name, jname, time, id } = data;
-  
+  const [hours, minutes] = time.split(":");
+  const hours_twelveHourFormat = hours % 12 ? hours % 12 : 12;
+  const am_or_pm = hours >= 12 ? "PM" : "AM";
+  const timeStamp = `${hours_twelveHourFormat}:${minutes} ${am_or_pm}`;
+  console.log(hours, minutes, hours_twelveHourFormat, am_or_pm);
+
   return (
-    <>
-      <div>{name}</div>
-      <div>{time}</div>
-      {/* <div>{anime?.info.poster}</div> */}
-    </>
+    <div className="recent-anime-card">
+      <div className="name">{name}</div>
+      <div className="time">
+        {/* <span>Airing at </span> */}
+        {timeStamp}
+      </div>
+    </div>
   );
+}
+
+function Loader() {
+  return <h1>Loading...</h1>;
 }
