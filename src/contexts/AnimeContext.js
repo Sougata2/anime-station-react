@@ -1,17 +1,31 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 
 const AnimeContext = createContext();
 const initialState = {
+  animeList: [],
+  date: null,
+  page: 0,
   currentAnime: {},
   isLoading: false,
+  error: null,
 };
 
-const BASE_URL = "https://api-aniwatch.onrender.com/anime/info?id=";
+const ANIME_INFO_BASE_URL = "https://api-aniwatch.onrender.com/anime/info?id=";
+const RECENT_ANIME_BASE_URL =
+  "https://api-aniwatch.onrender.com/anime/schedule?date=";
 
 function reducer(state, action) {
   switch (action.type) {
     case "dataLoading":
       return { ...state, isLoading: true };
+    case "nextPage":
+      return { ...state, page: state.page + 1, isLoading: false };
+    case "prevPage":
+      return { ...state, page: state.page - 1, isLoading: false };
+    case "setDate":
+      return { ...state, date: action.payload };
+    case "setAnimeList":
+      return { ...state, animeList: action.payload, isLoading: false };
     case "setAnime":
       return { ...state, currentAnime: action.payload, isLoading: false };
     default:
@@ -19,16 +33,40 @@ function reducer(state, action) {
   }
 }
 function AnimeProvider({ children }) {
-  const [{ currentAnime, isLoading }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [{ animeList, date, page, currentAnime, isLoading, error }, dispatch] =
+    useReducer(reducer, initialState);
+
+  function getUrl(offset = 0) {
+    const currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + offset);
+    const [month, date, year] = currentDate
+      .toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .split("/");
+    dispatch({ type: "setDate", payload: `${year}-${month}-${date}` });
+    return `${RECENT_ANIME_BASE_URL}${year}-${month}-${date}`;
+  }
+
+  function nextPage() {
+    dispatch({ type: "nextPage" });
+  }
+
+  function prevPage() {
+    dispatch({ type: "prevPage" });
+  }
+
+  function setAnimeList(payload) {
+    dispatch({ type: "setAnimeList", payload: payload });
+  }
 
   function getAnime(id) {
     async function fetchAnime() {
       dispatch({ type: "dataLoading" });
       try {
-        const res = await fetch(BASE_URL + id);
+        const res = await fetch(ANIME_INFO_BASE_URL + id);
         const data = await res.json();
         dispatch({ type: "setAnime", payload: data });
       } catch (err) {
@@ -38,8 +76,31 @@ function AnimeProvider({ children }) {
     fetchAnime();
   }
 
+  useEffect(
+    function () {
+      dispatch({ type: "dataLoading" });
+      async function getAnimeList() {
+        const res = await fetch(getUrl(page));
+        const data = await res.json();
+        setAnimeList(data);
+      }
+      getAnimeList();
+    },
+    [page]
+  );
+
   return (
-    <AnimeContext.Provider value={{ currentAnime, isLoading, getAnime }}>
+    <AnimeContext.Provider
+      value={{
+        currentAnime,
+        animeList,
+        date,
+        isLoading,
+        nextPage,
+        prevPage,
+        getAnime,
+      }}
+    >
       {children}
     </AnimeContext.Provider>
   );

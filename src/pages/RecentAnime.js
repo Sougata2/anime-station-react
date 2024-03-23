@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useRecentAnime } from "../contexts/RecentAnimeContext";
+import { useAnime } from "../contexts/AnimeContext";
 
 function RecentAnime() {
-  const { animeList, isLoading, nextPage, prevPage, date } = useRecentAnime();
+  const { animeList, isLoading, nextPage, prevPage, date } = useAnime();
   if (isLoading) return <p>Loading...</p>;
   return (
     <div>

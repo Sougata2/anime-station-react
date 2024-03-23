@@ -5,7 +5,7 @@ import { useAnime } from "../contexts/AnimeContext";
 function AboutAnime() {
   const { id } = useParams();
   const { currentAnime, isLoading, getAnime } = useAnime();
-  console.log(currentAnime)
+  // console.log("Current => ", currentAnime);
 
   useEffect(
     function () {
@@ -13,18 +13,26 @@ function AboutAnime() {
     },
     [id]
   );
+  const {
+    anime,
+    mostPopularAnimes,
+    recommendedAnimes,
+    relatedAnimes,
+    seasons,
+  } = currentAnime;
+  
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <div>
-      <p>{currentAnime?.anime?.info.id}</p>
-      <p>{currentAnime?.anime?.info.name}</p>
-      <img src={currentAnime?.anime?.info.poster} alt="Anime Logo" />
-      <p>{currentAnime?.anime?.info.description}</p>
-      <p>{currentAnime?.anime?.info?.stats.duration}</p>
-      <p>{currentAnime?.anime?.info?.stats.episodes.sub}</p>
-      <p>{currentAnime?.anime?.info?.stats.type}</p>
-      <p>{currentAnime?.anime?.info?.stats.rating}</p>
+      <p>{anime?.info.id}</p>
+      <p>{anime?.info.name}</p>
+      <img src={anime?.info.poster} alt="Anime Logo" />
+      <p>{anime?.info.description}</p>
+      <p>{anime?.info?.stats.duration}</p>
+      <p>{anime?.info?.stats.episodes.sub}</p>
+      <p>{anime?.info?.stats.type}</p>
+      <p>{anime?.info?.stats.rating}</p>
     </div>
   );
 }
