@@ -5,6 +5,7 @@ import { useAnime } from "../contexts/AnimeContext";
 function AboutAnime() {
   const { id } = useParams();
   const { currentAnime, isLoading, getAnime } = useAnime();
+  console.log(currentAnime)
 
   useEffect(
     function () {
@@ -18,7 +19,7 @@ function AboutAnime() {
     <div>
       <p>{currentAnime?.anime?.info.id}</p>
       <p>{currentAnime?.anime?.info.name}</p>
-      <img src={currentAnime?.anime?.info.name} alt="Anime Logo" />
+      <img src={currentAnime?.anime?.info.poster} alt="Anime Logo" />
       <p>{currentAnime?.anime?.info.description}</p>
       <p>{currentAnime?.anime?.info?.stats.duration}</p>
       <p>{currentAnime?.anime?.info?.stats.episodes.sub}</p>
