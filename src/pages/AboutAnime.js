@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAnime } from "../contexts/AnimeContext";
 
 function AboutAnime() {
   const { id } = useParams();
   const { currentAnime, isLoading, getAnime } = useAnime();
+  const navigate = useNavigate();
   // console.log("Current => ", currentAnime);
 
   useEffect(
@@ -20,7 +21,7 @@ function AboutAnime() {
     relatedAnimes,
     seasons,
   } = currentAnime;
-  
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -33,6 +34,13 @@ function AboutAnime() {
       <p>{anime?.info?.stats.episodes.sub}</p>
       <p>{anime?.info?.stats.type}</p>
       <p>{anime?.info?.stats.rating}</p>
+      <button
+        onClick={(e) => {
+          navigate(-1);
+        }}
+      >
+        Back
+      </button>
     </div>
   );
 }
