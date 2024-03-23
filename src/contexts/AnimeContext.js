@@ -68,18 +68,15 @@ function AnimeProvider({ children }) {
     dispatch({ type: "setAnimeList", payload: payload });
   }
 
-  const getAnime = useCallback(function getAnime(id) {
-    async function fetchAnime() {
-      dispatch({ type: "dataLoading" });
-      try {
-        const res = await fetch(ANIME_INFO_BASE_URL + id);
-        const data = await res.json();
-        dispatch({ type: "setAnime", payload: data });
-      } catch (err) {
-        console.error(err);
-      }
+  const getAnime = useCallback(async function getAnime(id) {
+    dispatch({ type: "dataLoading" });
+    try {
+      const res = await fetch(ANIME_INFO_BASE_URL + id);
+      const data = await res.json();
+      dispatch({ type: "setAnime", payload: data });
+    } catch (err) {
+      console.error(err);
     }
-    fetchAnime();
   }, []);
 
   useEffect(
