@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useAnime } from "../contexts/AnimeContext";
+import Spinner from "../components/Spinner";
 
 function RecentAnime() {
   const { animeList, isLoading, nextPage, prevPage, date } = useAnime();
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
   return (
     <div>
       <p>{date}</p>

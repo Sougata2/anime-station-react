@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAnime } from "../contexts/AnimeContext";
+import { current_anime } from "../components/SampleResponse";
+import Spinner from "../components/Spinner";
 
 function AboutAnime() {
   const { id } = useParams();
@@ -20,22 +22,29 @@ function AboutAnime() {
     recommendedAnimes,
     relatedAnimes,
     seasons,
-  } = currentAnime;
+  } = currentAnime ?? current_anime;
 
-  if (isLoading) return <p>Loading...</p>;
+  const { info, moreInfo } = anime;
+
+  const { id: animeId, name, poster, description, stats } = info;
+  const { rating, quality, episodes, type, duration } = stats;
+  const { sub, dub } = episodes;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div>
-      <p>{anime?.info.id}</p>
-      <p>{anime?.info.name}</p>
-      <img src={anime?.info.poster} alt="Anime Logo" />
-      <p>{anime?.info.description}</p>
-      <p>{anime?.info?.stats.duration}</p>
-      <p>{anime?.info?.stats.episodes.sub}</p>
-      <p>{anime?.info?.stats.type}</p>
-      <p>{anime?.info?.stats.rating}</p>
+      <p>{animeId}</p>
+      <p>{name}</p>
+      <img src={poster} alt="Anime Logo" />
+      <p>{description}</p>
+      <p>{duration}</p>
+      <p>{sub}</p>
+      <p>{type}</p>
+      <p>{rating}</p>
+      <p>{quality}</p>
       <button
-        onClick={(e) => {
+        onClick={() => {
           navigate(-1);
         }}
       >

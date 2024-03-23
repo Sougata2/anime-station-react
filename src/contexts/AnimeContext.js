@@ -11,7 +11,7 @@ const initialState = {
   animeList: [],
   date: null,
   page: 0,
-  currentAnime: {},
+  currentAnime: null,
   isLoading: false,
   error: null,
 };
