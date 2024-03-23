@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useCallback,
+} from "react";
 
 const AnimeContext = createContext();
 const initialState = {
@@ -62,7 +68,7 @@ function AnimeProvider({ children }) {
     dispatch({ type: "setAnimeList", payload: payload });
   }
 
-  function getAnime(id) {
+  const getAnime = useCallback(function getAnime(id) {
     async function fetchAnime() {
       dispatch({ type: "dataLoading" });
       try {
@@ -74,7 +80,7 @@ function AnimeProvider({ children }) {
       }
     }
     fetchAnime();
-  }
+  }, []);
 
   useEffect(
     function () {

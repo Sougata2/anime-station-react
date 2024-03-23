@@ -11,7 +11,7 @@ function AboutAnime() {
     function () {
       getAnime(id);
     },
-    [id]
+    [id, getAnime]
   );
   const {
     anime,
