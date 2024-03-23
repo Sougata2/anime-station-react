@@ -12,7 +12,7 @@ function RecentAnime() {
           <p>{anime.name}</p>
           <p>{anime.time}</p>
           <Link to={`/anime/${anime.id}`}>
-            <p>{anime.id}</p>
+            <button>Go</button>
           </Link>
         </div>
       ))}
