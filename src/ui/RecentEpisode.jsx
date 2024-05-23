@@ -1,9 +1,8 @@
-import { animeAboutInfoApi } from "../services/animeApi";
-import { useAnimeContext } from "../features/AnimeInfo/AnimeInfo";
-import { useModalContext } from "../features/Modal/Modal";
 import { formatTime } from "../services/dateApi";
 
 import styled from "styled-components";
+import Modal from "./Modal";
+import Card from "./Card";
 
 const ListItem = styled.li`
   cursor: pointer;
@@ -24,20 +23,18 @@ const ListItem = styled.li`
 `;
 
 function RecentEpisode({ anime }) {
-  const { dispatch } = useAnimeContext();
-  const { open: openModal } = useModalContext();
-
-  async function handleClick() {
-    openModal();
-    dispatch({ type: "loading" });
-    const animeInfo = await animeAboutInfoApi(anime.id);
-    dispatch({ type: "loaded", payload: animeInfo });
-  }
   return (
-    <ListItem onClick={handleClick}>
-      <p>{anime.name}</p>
-      <p>{formatTime(anime.time)}</p>
-    </ListItem>
+    <Modal>
+      <Modal.Open>
+        <ListItem>
+          <p>{anime.name}</p>
+          <p>{formatTime(anime.time)}</p>
+        </ListItem>
+      </Modal.Open>
+      <Modal.Window>
+        <Card animeId={anime.id} />
+      </Modal.Window>
+    </Modal>
   );
 }
 

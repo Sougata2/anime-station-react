@@ -4,11 +4,8 @@ import { useRecentAnime } from "../features/recent/useRecentEpisodes";
 
 import RecentEpisode from "../ui/RecentEpisode";
 import DateCounter from "../features/recent/DateCounter";
-import CardOverlay from "../ui/CardOverlay";
-import AnimeInfo from "../features/AnimeInfo/AnimeInfo";
 import Spinner from "../ui/Spinner";
 import styled from "styled-components";
-import Modal from "../features/Modal/Modal";
 import List from "../ui/List";
 
 const PageHeader = styled.div`
@@ -55,23 +52,11 @@ function RecentEpisodes() {
         </Styledtitle>
       </PageHeader>
       <div>
-        <AnimeInfo>
-          <Modal>
-            <List>
-              {scheduledAnimes.map((anime) => (
-                <RecentEpisode anime={anime} key={anime.id} />
-              ))}
-            </List>
-            <div>
-              <CardOverlay />
-              <AnimeInfo.AnimeCard>
-                <Modal.Close />
-                <AnimeInfo.AnimeImage />
-                <AnimeInfo.AnimeTitle />
-              </AnimeInfo.AnimeCard>
-            </div>
-          </Modal>
-        </AnimeInfo>
+        <List>
+          {scheduledAnimes.map((anime) => (
+            <RecentEpisode anime={anime} key={anime.id} />
+          ))}
+        </List>
       </div>
     </>
   );
