@@ -19,10 +19,6 @@ const Overlay = styled.div`
   transition: all 0.5s;
 `;
 
-const Button = styled.button`
-  position: absolute;
-  right: 0;
-`;
 
 const ModalContext = createContext();
 
