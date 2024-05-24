@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -32,7 +33,7 @@ const NavItems = styled.ul`
   transition: all 500ms ease-in-out;
   @media (max-width: 800px) {
     /* change to flex on fullscreen */
-    display: none;
+    display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0.3rem;
@@ -43,6 +44,7 @@ const NavItem = styled(NavLink)`
   color: white;
   padding: 1px 10px;
   border-radius: 10px;
+  transition: all 500ms ease-in-out;
   &:hover {
     background-color: white;
     color: #e384ff;
@@ -76,15 +78,16 @@ const Bar = styled.span`
   border-radius: 10px;
 `;
 function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <NavBar>
       <NavBrand>Anime Station</NavBrand>
-      <ToggleBtn>
+      <ToggleBtn onClick={(e) => setIsOpen(!isOpen)}>
         <Bar></Bar>
         <Bar></Bar>
         <Bar></Bar>
       </ToggleBtn>
-      <NavItems>
+      <NavItems $isvisible={isOpen}>
         <NavItem to={"/home"}>Home</NavItem>
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
