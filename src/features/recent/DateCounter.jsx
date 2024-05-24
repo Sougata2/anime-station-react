@@ -7,7 +7,6 @@ import styled from "styled-components";
 const StyledDate = styled.p`
   font-size: 1.3rem;
   font-weight: bold;
-  font-family: cursive;
 `;
 const StyledButton = styled.button`
   background-color: white;
