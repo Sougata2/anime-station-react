@@ -87,7 +87,7 @@ function Header() {
         <Bar></Bar>
         <Bar></Bar>
       </ToggleBtn>
-      <NavItems $isvisible={isOpen}>
+      <NavItems $isvisible={isOpen} onClick={(e) => setIsOpen(!isOpen)}>
         <NavItem to={"/home"}>Home</NavItem>
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
