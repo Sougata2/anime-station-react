@@ -1,31 +1,37 @@
 import { useEffect, useState } from "react";
 import { animeAboutInfoApi } from "../services/animeApi";
 
+import EpisodesNumber from "./card/EpisodesNumber";
+import Description from "./card/Description";
+import Favourite from "./card/Favourite";
+import Duration from "./card/Duration";
+import CloseBtn from "./card/CloseBtn";
 import Spinner from "./Spinner";
+import Rating from "./card/Rating";
 import styled from "styled-components";
+import Image from "./card/Image";
+import Title from "./card/Title";
+import Score from "./card/Score";
+import View from "./card/View";
 
 const StyledCard = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f7f7f7;
+  transform: translate(-50%, -45%);
+  background-color: #d09cfa;
+  color: white;
   border-radius: 10px;
-  width: 20rem;
+  width: 300px;
+  height: 510px;
   z-index: 10;
   padding: 1rem;
   margin-top: 5px;
+  font-family: "Poetsen One", sans-serif;
 `;
-
-const Button = styled.button`
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 5px;
-  border-radius: 100%;
-  border: none;
-  transform: translate(10px, -10px);
-  cursor: pointer;
+const CardBody = styled.div`
+  position: relative;
+  top: -70px;
 `;
 
 function Card({ animeId, onClose }) {
@@ -51,10 +57,22 @@ function Card({ animeId, onClose }) {
 
   return (
     <StyledCard>
-      <Button onClick={onClose}>✖️</Button>
-      <img src={anime?.poster} alt="" />
-      <p>{anime?.name}</p>
+      <Image>{anime?.poster}</Image>
+      <CardBody>
+        <Title $canTakeFullWidth={anime?.moreInfo?.malscore}>
+          {anime?.name}
+        </Title>
+        <Score>{anime?.moreInfo?.malscore}</Score>
+        <Description>{anime?.description}</Description>
+        <EpisodesNumber>{anime?.stats?.episodes?.sub}</EpisodesNumber>
+        <Rating>{anime?.stats?.rating}</Rating>
+        <Duration>{anime?.stats?.duration}</Duration>
+      </CardBody>
+      <CloseBtn handleClick={onClose}>Close</CloseBtn>
+      <Favourite />
+      <View />
     </StyledCard>
   );
 }
+
 export default Card;
