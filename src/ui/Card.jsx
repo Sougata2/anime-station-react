@@ -54,7 +54,6 @@ function Card({ animeId, onClose }) {
       <Button onClick={onClose}>✖️</Button>
       <img src={anime?.poster} alt="" />
       <p>{anime?.name}</p>
-      <p>{anime.description}</p>
     </StyledCard>
   );
 }
