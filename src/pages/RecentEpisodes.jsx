@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecentAnime } from "../features/recent/useRecentEpisodes";
 
+import CalenderButton from "../ui/CalenderButton";
 import RecentEpisode from "../ui/RecentEpisode";
 import DateCounter from "../features/recent/DateCounter";
 import Spinner from "../ui/Spinner";
 import styled from "styled-components";
 import List from "../ui/List";
-import CalenderButton from "../ui/CalenderButton";
 
 const PageHeader = styled.div`
   display: flex;
