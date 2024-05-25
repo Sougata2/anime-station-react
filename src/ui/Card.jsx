@@ -13,6 +13,7 @@ import Image from "./card/Image";
 import Title from "./card/Title";
 import Score from "./card/Score";
 import View from "./card/View";
+import { addToDb } from "../features/Favourite/addToDb";
 
 const StyledCard = styled.div`
   position: absolute;
@@ -37,6 +38,10 @@ const CardBody = styled.div`
 function Card({ animeId, onClose }) {
   const [anime, setAnime] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
+  function addToFav() {
+    addToDb(anime);
+  }
 
   useEffect(
     function () {
@@ -69,7 +74,7 @@ function Card({ animeId, onClose }) {
         <Duration>{anime?.stats?.duration}</Duration>
       </CardBody>
       <CloseBtn handleClick={onClose}>Close</CloseBtn>
-      <Favourite />
+      <Favourite handleClick={addToFav} />
       <View />
     </StyledCard>
   );
