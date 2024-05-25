@@ -15,10 +15,22 @@ const PageHeader = styled.div`
 `;
 
 const Styledtitle = styled.div`
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 20px;
+  border-radius: 35px;
+  font-family: "Poetsen One", sans-serif;
+  background-color: #e384ff;
+  color: white;
   display: flex;
   gap: 2rem;
-  justify-items: center;
+  justify-content: space-between;
   align-items: center;
+  @media (max-width: 800px) {
+    gap: 1rem;
+  }
 `;
 
 function RecentEpisodes() {
