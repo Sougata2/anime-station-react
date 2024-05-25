@@ -7,6 +7,7 @@ import DateCounter from "../features/recent/DateCounter";
 import Spinner from "../ui/Spinner";
 import styled from "styled-components";
 import List from "../ui/List";
+import CalenderButton from "../ui/CalenderButton";
 
 const PageHeader = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const Styledtitle = styled.div`
   font-family: "Poetsen One", sans-serif;
   background-color: #e384ff;
   color: white;
-  display: flex;
+  display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
   gap: 2rem;
   justify-content: space-between;
   align-items: center;
@@ -35,9 +36,13 @@ const Styledtitle = styled.div`
 
 function RecentEpisodes() {
   const [offset, setOffset] = useState(0);
+  const [showDateCounter, setShowDateCounter] = useState(false);
   const queryClient = useQueryClient();
   const { isPending, data: { scheduledAnimes } = [] } = useRecentAnime(offset);
 
+  function toggleDateCounter() {
+    setShowDateCounter(!showDateCounter);
+  }
   // control over offset must be used in parent to stay sync with ["recent-episodes"]
   // that's why offset is not in DateCounter.
   useEffect(
@@ -54,7 +59,7 @@ function RecentEpisodes() {
     <>
       <PageHeader>
         <h2>Recent Episodes</h2>
-        <Styledtitle>
+        <Styledtitle $isvisible={showDateCounter}>
           <DateCounter offset={offset} setOffset={setOffset}>
             <DateCounter.Yesterday />
             <DateCounter.Date />
@@ -62,6 +67,7 @@ function RecentEpisodes() {
             <DateCounter.Reset />
           </DateCounter>
         </Styledtitle>
+        <CalenderButton handleClick={toggleDateCounter} />
       </PageHeader>
       <div>
         <List>
