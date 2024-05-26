@@ -7,6 +7,10 @@ const StyledTitle = styled.p`
 `;
 
 function Title({ children }) {
-  return <StyledTitle>{children}</StyledTitle>;
+  return (
+    <StyledTitle>
+      {children.length > 50 ? children.slice(0, 50)+ "..." : children}
+    </StyledTitle>
+  );
 }
 export default Title;
