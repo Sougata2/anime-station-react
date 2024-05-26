@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const NavBar = styled.div`
   font-family: "Poetsen One", sans-serif;
@@ -15,9 +15,9 @@ const NavBar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: all 300ms linear;
+    transition: all 400ms linear;
     height: ${({ $isvisible }) => ($isvisible ? "220px" : "55px")};
-    overflow: ${({ $isvisible }) => ($isvisible ? "visible" : "hidden")};
+    overflow: hidden;
   }
 `;
 const NavBrand = styled.p`
