@@ -67,7 +67,7 @@ function RecentEpisodes() {
             <DateCounter.Reset />
           </DateCounter>
         </Styledtitle>
-        <CalenderButton handleClick={toggleDateCounter} />
+        <CalenderButton callback={toggleDateCounter} />
       </PageHeader>
       <div>
         <List>

@@ -1,5 +1,16 @@
-import styled from "styled-components";
+import { useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 
+const animationDuration = 550;
+
+const rotateAnimation = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 const StyledButton = styled.button`
   position: absolute;
   right: 4rem;
@@ -12,10 +23,13 @@ const StyledButton = styled.button`
   color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 300ms;
+  ${(props) =>
+    props.$rotate &&
+    css`
+      animation: ${rotateAnimation} ${animationDuration}ms linear;
+    `}
   &:hover {
     background-color: #d968fc;
-    padding: 18px 22px;
-    transform: translate(5px, 5px);
   }
   @media (max-width: 800px) {
     right: 12px;
@@ -23,17 +37,25 @@ const StyledButton = styled.button`
     padding: 6px 10px;
     &:hover {
       background-color: #d968fc;
-      padding: 8px 12px;
-      transform: translate(-5px, -5px);
     }
   }
 `;
 
 const StyledIcon = styled.i``;
 
-function CalenderButton({ handleClick }) {
+function CalenderButton({ callback }) {
+  const [rotate, setRotate] = useState(false);
+
+  function handleClick() {
+    // animation
+    setRotate(true);
+    setTimeout(() => setRotate(false), animationDuration);
+    // function for open the dateCounter
+    callback();
+  }
+
   return (
-    <StyledButton onClick={handleClick}>
+    <StyledButton onClick={handleClick} $rotate={rotate}>
       <StyledIcon className="fa-solid fa-calendar-days"></StyledIcon>
     </StyledButton>
   );

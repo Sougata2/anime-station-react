@@ -11,7 +11,10 @@ const StyledFavourite = styled.div`
   }
 `;
 
-function Favourite({ handleClick }) {
+function Favourite({ anime }) {
+  function handleClick() {
+    console.log(anime);
+  }
   return (
     <StyledFavourite onClick={handleClick}>
       <i className="fa-solid fa-heart"></i>
