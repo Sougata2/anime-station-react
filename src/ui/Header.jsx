@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import styled from "styled-components";
 
 const NavBar = styled.div`
@@ -14,6 +15,9 @@ const NavBar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    transition: all 300ms linear;
+    height: ${({ $isvisible }) => ($isvisible ? "220px" : "55px")};
+    overflow: ${({ $isvisible }) => ($isvisible ? "visible" : "hidden")};
   }
 `;
 const NavBrand = styled.p`
@@ -33,7 +37,8 @@ const NavItems = styled.ul`
   transition: all 500ms ease-in-out;
   @media (max-width: 800px) {
     /* change to flex on fullscreen */
-    display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
+    /* display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")}; */
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 0.3rem;
@@ -80,14 +85,14 @@ const Bar = styled.span`
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <NavBar>
+    <NavBar $isvisible={isOpen}>
       <NavBrand>Anime Station</NavBrand>
       <ToggleBtn onClick={(e) => setIsOpen(!isOpen)}>
         <Bar></Bar>
         <Bar></Bar>
         <Bar></Bar>
       </ToggleBtn>
-      <NavItems $isvisible={isOpen} onClick={(e) => setIsOpen(!isOpen)}>
+      <NavItems onClick={(e) => setIsOpen(!isOpen)}>
         <NavItem to={"/home"}>Home</NavItem>
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
