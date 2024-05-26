@@ -16,6 +16,8 @@ const NavBar = styled.div`
     flex-direction: column;
     align-items: flex-start;
     transition: all 400ms linear;
+    /* Conditionally give height and let the overflow be hidden
+    because if ample height is given then there will be no overflow */
     height: ${({ $isvisible }) => ($isvisible ? "220px" : "55px")};
     overflow: hidden;
   }
@@ -36,8 +38,6 @@ const NavItems = styled.ul`
   padding: 0;
   transition: all 500ms ease-in-out;
   @media (max-width: 800px) {
-    /* change to flex on fullscreen */
-    /* display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")}; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
