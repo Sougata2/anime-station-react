@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { animeAboutInfoApi } from "../services/animeApi";
-import { addToDb } from "../features/Favourite/addToDb";
 
 import EpisodesNumber from "./card/EpisodesNumber";
 import Description from "./card/Description";

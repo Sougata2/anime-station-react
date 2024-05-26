@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { addToFavourite } from "../../services/favouritesApi";
 
 const StyledFavourite = styled.div`
   position: absolute;
@@ -14,6 +15,7 @@ const StyledFavourite = styled.div`
 function Favourite({ anime }) {
   function handleClick() {
     console.log(anime);
+    addToFavourite(anime);
   }
   return (
     <StyledFavourite onClick={handleClick}>
