@@ -6,8 +6,29 @@ import CalenderButton from "../ui/CalenderButton";
 import RecentEpisode from "../ui/RecentEpisode";
 import DateCounter from "../features/recent/DateCounter";
 import Spinner from "../ui/Spinner";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import List from "../ui/List";
+
+const slideUp = keyframes`
+  from {
+    display: flex;
+    bottom: 0;
+  }
+  to{
+    display: flex;
+    bottom: 65px;
+  }
+`;
+const slideDown = keyframes`
+  from {
+    display: flex;
+    bottom: 65px;
+  }
+  to{
+    display: none;
+    bottom: 0;
+  }
+`;
 
 const PageHeader = styled.div`
   display: flex;
@@ -26,6 +47,14 @@ const Styledtitle = styled.div`
   background-color: #e384ff;
   color: white;
   display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
+  ${({ $isvisible }) =>
+    $isvisible
+      ? css`
+          animation: ${slideUp} 200ms linear;
+        `
+      : css`
+          animation: ${slideDown} 200ms linear;
+        `}
   gap: 2rem;
   justify-content: space-between;
   align-items: center;

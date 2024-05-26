@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ImageContainer = styled.div`
   display: inline-block;
   width: 100%;
-  height: 240px;
+  height: 250px;
   border-radius: 20px;
   overflow: hidden;
   position: relative;

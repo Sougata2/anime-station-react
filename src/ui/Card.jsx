@@ -19,7 +19,7 @@ const StyledCard = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -50%);
   background-color: #d09cfa;
   color: white;
   border-radius: 10px;
