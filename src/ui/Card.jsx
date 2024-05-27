@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import { animeAboutInfoApi } from "../services/animeApi";
+import { useQueryClient } from "@tanstack/react-query";
+import { useAnimeInfo } from "../features/AnimeInfo/useAnimeInfo";
+import { useEffect } from "react";
+
 
 import EpisodesNumber from "./card/EpisodesNumber";
 import Description from "./card/Description";
@@ -28,6 +30,15 @@ const StyledCard = styled.div`
   padding: 1rem;
   margin-top: 5px;
   font-family: "Poetsen One", sans-serif;
+  @keyframes slideDown {
+    from {
+      transform: translate(-50%, -170%);
+    }
+    to {
+      transform: translate(-50%, -50%);
+    }
+  }
+  animation: slideDown 500ms ease-in;
 `;
 const CardBody = styled.div`
   position: relative;
@@ -35,41 +46,37 @@ const CardBody = styled.div`
 `;
 
 function Card({ animeId, onClose }) {
-  const [anime, setAnime] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const queryClient = useQueryClient();
+  const {
+    isPending,
+    isRefetching,
+    data: { anime: { info = {}, moreInfo = {} } = {} } = {},
+  } = useAnimeInfo(animeId);
 
   useEffect(
     function () {
-      setIsLoading(true);
-      async function getAnime() {
-        const data = await animeAboutInfoApi(animeId);
-        setAnime(data?.anime?.info);
-        setIsLoading(false);
-      }
-      getAnime();
+      queryClient.invalidateQueries({
+        queryKey: ["current-anime"],
+      });
     },
-    [animeId]
+    [animeId, queryClient]
   );
 
-  // extra with isLoading : not to show the card when isLoadin
-  // false but data is undefined.
-  if (isLoading || Object.keys(anime).length === 0) return <Spinner />;
+  if (isPending || isRefetching) return <Spinner />;
 
   return (
     <StyledCard>
-      <Image>{anime?.poster}</Image>
+      <Image>{info?.poster}</Image>
       <CardBody>
-        <Title $canTakeFullWidth={anime?.moreInfo?.malscore}>
-          {anime?.name}
-        </Title>
-        <Score>{anime?.moreInfo?.malscore}</Score>
-        <Description>{anime?.description}</Description>
-        <EpisodesNumber>{anime?.stats?.episodes?.sub}</EpisodesNumber>
-        <Rating>{anime?.stats?.rating}</Rating>
-        <Duration>{anime?.stats?.duration}</Duration>
+        <Title $canTakeFullWidth={moreInfo?.malscore}>{info?.name}</Title>
+        <Score>{moreInfo?.malscore}</Score>
+        <Description>{info?.description}</Description>
+        <EpisodesNumber>{info?.stats?.episodes?.sub}</EpisodesNumber>
+        <Rating>{info?.stats?.rating}</Rating>
+        <Duration>{info?.stats?.duration}</Duration>
       </CardBody>
       <CloseBtn handleClick={onClose}>Close</CloseBtn>
-      <Favourite anime={anime} />
+      <Favourite anime={info} />
       <View />
     </StyledCard>
   );

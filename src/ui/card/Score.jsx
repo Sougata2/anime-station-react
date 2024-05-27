@@ -7,7 +7,7 @@ const StyledScore = styled.div`
 `;
 
 function Score({ children }) {
-  return <StyledScore>{children?.toFixed(1)}</StyledScore>;
+  return <StyledScore>{children}</StyledScore>;
 }
 
 export default Score;
