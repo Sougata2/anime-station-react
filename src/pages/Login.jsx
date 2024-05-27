@@ -1,7 +1,8 @@
+import Heading from "../ui/Heading";
 import React from "react";
 
 function Login() {
-  return <div>Login</div>;
+  return <Heading>Login</Heading>;
 }
 
 export default Login;

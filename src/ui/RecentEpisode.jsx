@@ -5,22 +5,27 @@ import Modal from "./Modal";
 import Card from "./Card";
 
 const ListItem = styled.li`
+  font-family: "Poetsen One", sans-serif;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* border: 1px solid black; */
+  background-color: #e384ff;
+  color: white;
   border-radius: 100px;
-  padding: 0 2%;
+  padding: 0 20px;
   margin-bottom: 1rem;
-  &:hover,
-  &:active {
-    background-color: #eeeeee;
-    color: #444444;
-    margin: 0 -2rem 1rem -2rem;
-    transition: all 500ms;
-  }
+  position: relative;
 `;
+
+const Time = styled.p`
+  background-color: white;
+  color: #e384ff;
+  position: absolute;
+  right: 17px;
+  padding: 4px 7px;
+  border-radius: 14px;
+`
 
 function RecentEpisode({ anime }) {
   return (
@@ -28,7 +33,7 @@ function RecentEpisode({ anime }) {
       <Modal.Open>
         <ListItem>
           <p>{anime.name}</p>
-          <p>{formatTime(anime.time)}</p>
+          <Time>{formatTime(anime.time)}</Time>
         </ListItem>
       </Modal.Open>
       <Modal.Window>

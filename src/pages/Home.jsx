@@ -1,7 +1,8 @@
+import Heading from "../ui/Heading";
 import React from "react";
 
 function Home() {
-  return <div>Home</div>;
+  return <Heading>Home</Heading>;
 }
 
 export default Home;

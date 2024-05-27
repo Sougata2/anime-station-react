@@ -1,3 +1,4 @@
+import styled, { css, keyframes } from "styled-components";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRecentAnime } from "../features/recent/useRecentEpisodes";
@@ -6,10 +7,8 @@ import CalenderButton from "../ui/CalenderButton";
 import RecentEpisode from "../ui/RecentEpisode";
 import DateCounter from "../features/recent/DateCounter";
 import Spinner from "../ui/Spinner";
-import styled, { css, keyframes } from "styled-components";
-import List from "../ui/List";
-import { useFavourites } from "../features/Favourite/useFavourites";
 import Heading from "../ui/Heading";
+import List from "../ui/List";
 
 const slideUp = keyframes`
   from {
@@ -43,10 +42,11 @@ const Styledtitle = styled.div`
   bottom: 65px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 1000;
   padding: 0 20px;
   border-radius: 35px;
   font-family: "Poetsen One", sans-serif;
-  background-color: #e384ff;
+  background-color: #865DFF;
   color: white;
   display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
   ${({ $isvisible }) =>
@@ -89,7 +89,7 @@ function RecentEpisodes() {
   return (
     <>
       <PageHeader>
-        <Heading>Recent Episodes 📅</Heading>
+        <Heading>Recent Episodes</Heading>
         <Styledtitle $isvisible={showDateCounter}>
           <DateCounter offset={offset} setOffset={setOffset}>
             <DateCounter.Yesterday />
