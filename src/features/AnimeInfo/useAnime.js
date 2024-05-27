@@ -9,11 +9,11 @@ function useAnimeInfoById(animeId) {
   return { isPending, isRefetching, data, error };
 }
 
-function useAnimeInfo() {
+function useCurrentAnime() {
   const { isPending, isRefetching, data, error } = useQuery({
     queryKey: ["current-anime"],
   });
   return { isPending, isRefetching, data, error };
 }
 
-export { useAnimeInfoById, useAnimeInfo };
+export { useAnimeInfoById, useCurrentAnime };
