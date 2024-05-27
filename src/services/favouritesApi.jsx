@@ -4,7 +4,13 @@
 //   collection,
 //   setDoc,
 // } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 import { db } from "./fireStore";
 
 async function addToFavourite(data = {}) {
@@ -23,4 +29,12 @@ async function getFavourites() {
   return favourites;
 }
 
-export { addToFavourite, getFavourites };
+async function deleteFromFavourites(id) {
+  try {
+    await deleteDoc(doc(db, "favourites", String(id)));
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export { addToFavourite, getFavourites, deleteFromFavourites };

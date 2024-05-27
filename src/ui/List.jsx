@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 const StyledList = styled.ul`
   list-style: none;
-  padding: 0 2%;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 
 function List({ children }) {

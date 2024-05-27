@@ -9,6 +9,7 @@ import Spinner from "../ui/Spinner";
 import styled, { css, keyframes } from "styled-components";
 import List from "../ui/List";
 import { useFavourites } from "../features/Favourite/useFavourites";
+import Heading from "../ui/Heading";
 
 const slideUp = keyframes`
   from {
@@ -88,7 +89,7 @@ function RecentEpisodes() {
   return (
     <>
       <PageHeader>
-        <h2>Recent Episodes</h2>
+        <Heading>Recent Episodes 📅</Heading>
         <Styledtitle $isvisible={showDateCounter}>
           <DateCounter offset={offset} setOffset={setOffset}>
             <DateCounter.Yesterday />

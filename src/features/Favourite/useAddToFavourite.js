@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 function useAddToFavourite() {
   const queryClient = useQueryClient();
 
-  const { mutate: add, isLoading: isAdding } = useMutation({
-    mutationFn: (anime) => addToFavourite(anime),
+  const { mutate: add, isPending: isAdding } = useMutation({
+    mutationFn: addToFavourite,
     onSuccess: () => {
       toast.success("Added To Favourites");
       queryClient.invalidateQueries({
