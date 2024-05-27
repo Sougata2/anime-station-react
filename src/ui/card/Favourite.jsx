@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { addToFavourite, isFavourite } from "../../services/favouritesApi";
-import { useAnimeInfo } from "../../features/AnimeInfo/useAnime";
+import { useAddToFavourite } from "../../features/Favourite/useAddToFavourite";
+import { useInFavourites } from "../../features/Favourite/useInFavourites";
+import { useCurrentAnime } from "../../features/AnimeInfo/useAnime";
 
 import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const StyledFavourite = styled.div`
   position: absolute;
@@ -16,24 +18,27 @@ const StyledFavourite = styled.div`
 `;
 
 function Favourite() {
-  const { data: { anime: { info = {} } = {} } = {} } = useAnimeInfo();
+  const { data: { anime: { info = {} } = {} } = {} } = useCurrentAnime();
+  const isFavourite = useInFavourites(info.anilistId);
+  const { add } = useAddToFavourite();
+
   const [isDisabled, setIsDisabled] = useState(false);
   const ref = useRef(null);
 
-  useEffect(function () {
-    async function checkForFavourite() {
-      const res = await isFavourite(info.anilistId);
-      setIsDisabled(res);
-    }
-    checkForFavourite();
-  });
+  useEffect(
+    function () {
+      if (isFavourite) setIsDisabled(true);
+    },
+    [isFavourite]
+  );
 
-  async function handleClick() {
-    if (isDisabled) alert("Already Added To Favourites!");
+  function handleClick() {
+    if (isDisabled) return toast.error("Already Added To Favourites");
+
+    const { id, name, poster, anilistId } = info;
     ref.current.style.color = "#03030373";
     setIsDisabled(true);
 
-    const { id, name, poster, anilistId } = info;
     const time = Intl.DateTimeFormat("en-US", {
       year: "numeric",
       month: "2-digit",
@@ -45,7 +50,8 @@ function Favourite() {
       timeZone: "Asia/Kolkata",
     }).format(new Date());
     const timeStamp = new Date(time).toISOString();
-    addToFavourite({ id, name, poster, anilistId, timeStamp });
+
+    add({ id, name, poster, anilistId, timeStamp });
   }
   return (
     <StyledFavourite onClick={handleClick} $isFav={isDisabled} ref={ref}>

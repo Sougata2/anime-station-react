@@ -4,7 +4,7 @@
 //   collection,
 //   setDoc,
 // } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "./fireStore";
 
 async function addToFavourite(data = {}) {
@@ -23,10 +23,4 @@ async function getFavourites() {
   return favourites;
 }
 
-async function isFavourite(anilistId) {
-  const docRef = doc(db, "favourites", String(anilistId));
-  const docSnap = await getDoc(docRef);
-  return docSnap.exists();
-}
-
-export { addToFavourite, getFavourites, isFavourite };
+export { addToFavourite, getFavourites };

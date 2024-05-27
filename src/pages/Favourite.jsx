@@ -1,13 +1,21 @@
 import React from "react";
-import { getFavourites } from "../services/favouritesApi";
+import { useFavourites } from "../features/Favourite/useFavourites";
+import List from "../ui/List";
+import Spinner from "../ui/Spinner";
 
 function Favourite() {
-  async function dataList() {
-    const favourites = await getFavourites();
-    console.log(favourites);
-  }
-  dataList();
-  return <div>Favourite</div>;
+  const { isPending, isRefetching, data, error } = useFavourites();
+  if (isPending || isRefetching) return <Spinner />;
+  return (
+    <List>
+      {data.map((anime) => (
+        <>
+          <div>{anime.name}</div>
+          <br />
+        </>
+      ))}
+    </List>
+  );
 }
 
 export default Favourite;
