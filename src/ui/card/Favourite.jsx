@@ -1,6 +1,8 @@
-import styled from "styled-components";
-import { addToFavourite, isFavourite } from "../../services/favouritesApi";
 import { useEffect, useRef, useState } from "react";
+import { addToFavourite, isFavourite } from "../../services/favouritesApi";
+import { useAnimeInfo } from "../../features/AnimeInfo/useAnime";
+
+import styled from "styled-components";
 
 const StyledFavourite = styled.div`
   position: absolute;
@@ -13,13 +15,14 @@ const StyledFavourite = styled.div`
   }
 `;
 
-function Favourite({ anime }) {
+function Favourite() {
+  const { data: { anime: { info = {} } = {} } = {} } = useAnimeInfo();
   const [isDisabled, setIsDisabled] = useState(false);
   const ref = useRef(null);
 
   useEffect(function () {
     async function checkForFavourite() {
-      const res = await isFavourite(anime.anilistId);
+      const res = await isFavourite(info.anilistId);
       setIsDisabled(res);
     }
     checkForFavourite();
@@ -30,8 +33,19 @@ function Favourite({ anime }) {
     ref.current.style.color = "#03030373";
     setIsDisabled(true);
 
-    const { id, name, poster, anilistId } = anime;
-    addToFavourite({ id, name, poster, anilistId });
+    const { id, name, poster, anilistId } = info;
+    const time = Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZone: "Asia/Kolkata",
+    }).format(new Date());
+    const timeStamp = new Date(time).toISOString();
+    addToFavourite({ id, name, poster, anilistId, timeStamp });
   }
   return (
     <StyledFavourite onClick={handleClick} $isFav={isDisabled} ref={ref}>

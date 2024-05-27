@@ -1,7 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useAnimeInfo } from "../features/AnimeInfo/useAnimeInfo";
+import { useAnimeInfoById } from "../features/AnimeInfo/useAnime";
 import { useEffect } from "react";
-
 
 import EpisodesNumber from "./card/EpisodesNumber";
 import Description from "./card/Description";
@@ -51,7 +50,7 @@ function Card({ animeId, onClose }) {
     isPending,
     isRefetching,
     data: { anime: { info = {}, moreInfo = {} } = {} } = {},
-  } = useAnimeInfo(animeId);
+  } = useAnimeInfoById(animeId);
 
   useEffect(
     function () {
@@ -76,7 +75,7 @@ function Card({ animeId, onClose }) {
         <Duration>{info?.stats?.duration}</Duration>
       </CardBody>
       <CloseBtn handleClick={onClose}>Close</CloseBtn>
-      <Favourite anime={info} />
+      <Favourite />
       <View />
     </StyledCard>
   );
