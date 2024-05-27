@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Favourite from "./pages/Favourite";
 import About from "./pages/About";
 import Login from "./pages/Login";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,22 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontFamily: '"Poetsen One", sans-serif',
+            color: "#1a1a1a82"
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }
