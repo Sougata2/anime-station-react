@@ -42,11 +42,11 @@ const Styledtitle = styled.div`
   bottom: 65px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 1;
   padding: 0 20px;
   border-radius: 35px;
   font-family: "Poetsen One", sans-serif;
-  background-color: #865DFF;
+  background-color: #e384ff;
   color: white;
   display: ${({ $isvisible }) => ($isvisible ? "flex" : "none")};
   ${({ $isvisible }) =>

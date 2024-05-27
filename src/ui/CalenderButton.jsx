@@ -23,6 +23,7 @@ const StyledButton = styled.button`
   color: white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 300ms;
+  z-index: 1;
   ${(props) =>
     props.$rotate &&
     css`

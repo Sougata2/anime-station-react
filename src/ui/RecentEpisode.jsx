@@ -10,12 +10,13 @@ const ListItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e384ff;
-  color: white;
+  background-color: #eeeeee;
+  color: #686d76;
   border-radius: 100px;
   padding: 0 20px;
   margin-bottom: 1rem;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 
 const Time = styled.p`
@@ -25,14 +26,18 @@ const Time = styled.p`
   right: 17px;
   padding: 4px 7px;
   border-radius: 14px;
-`
+`;
 
 function RecentEpisode({ anime }) {
   return (
     <Modal>
       <Modal.Open>
         <ListItem>
-          <p>{anime.name}</p>
+          <p>
+            {window.innerWidth <= 800 && anime.name.length > 25
+              ? anime.name.slice(0, 25) + "..."
+              : anime.name}
+          </p>
           <Time>{formatTime(anime.time)}</Time>
         </ListItem>
       </Modal.Open>
