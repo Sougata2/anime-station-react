@@ -30,6 +30,7 @@ const Body = styled.div`
   flex-direction: column;
   gap: 10px;
   padding-right: 8px;
+  padding-top: 8px;
 `;
 const Name = styled.div`
   font-size: 20px;
