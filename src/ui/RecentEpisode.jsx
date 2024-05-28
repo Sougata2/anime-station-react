@@ -27,17 +27,21 @@ const Time = styled.p`
   padding: 4px 7px;
   border-radius: 14px;
 `;
+const Name = styled.p`
+  @media (max-width: 800px) {
+    max-width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`;
 
 function RecentEpisode({ anime }) {
   return (
     <Modal>
       <Modal.Open>
         <ListItem>
-          <p>
-            {window.innerWidth <= 800 && anime.name.length > 25
-              ? anime.name.slice(0, 25) + "..."
-              : anime.name}
-          </p>
+          <Name>{anime.name}</Name>
           <Time>{formatTime(anime.time)}</Time>
         </ListItem>
       </Modal.Open>
