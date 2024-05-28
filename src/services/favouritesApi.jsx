@@ -9,6 +9,8 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  orderBy,
+  query,
   setDoc,
 } from "firebase/firestore";
 import { db } from "./fireStore";
@@ -21,7 +23,8 @@ async function addToFavourite(data = {}) {
 async function getFavourites() {
   const favourites = [];
   const colRef = collection(db, "favourites");
-  const querySnapShot = await getDocs(colRef);
+  const q = query(colRef, orderBy("timeStamp", "desc"));
+  const querySnapShot = await getDocs(q);
   querySnapShot.forEach((doc) => {
     const { id, name, poster, anilistId } = doc.data();
     favourites.push({ id, name, poster, anilistId });
