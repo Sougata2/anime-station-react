@@ -1,16 +1,8 @@
-// import {
-//   doc,
-//   addDoc,
-//   collection,
-//   setDoc,
-// } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-firestore.js";
 import {
   collection,
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
-  query,
   setDoc,
 } from "firebase/firestore";
 import { db } from "./fireStore";
@@ -23,11 +15,9 @@ async function addToFavourite(data = {}) {
 async function getFavourites() {
   const favourites = [];
   const colRef = collection(db, "favourites");
-  const q = query(colRef, orderBy("timeStamp", "desc"));
-  const querySnapShot = await getDocs(q);
-  querySnapShot.forEach((doc) => {
-    const { id, name, poster, anilistId } = doc.data();
-    favourites.push({ id, name, poster, anilistId });
+  const docs = await getDocs(colRef);
+  docs.forEach((doc) => {
+    favourites.push(doc.data());
   });
   return favourites;
 }

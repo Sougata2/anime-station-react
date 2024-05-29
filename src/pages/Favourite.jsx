@@ -3,7 +3,7 @@ import { useFavourites } from "../features/Favourite/useFavourites";
 import FavouriteAnime from "../ui/FavouriteAnime";
 import Heading from "../ui/Heading";
 import Spinner from "../ui/Spinner";
-import List from "../ui/List";
+import Filters from "../ui/Filters";
 
 function Favourite() {
   const { isPending, isRefetching, data } = useFavourites();
@@ -11,11 +11,18 @@ function Favourite() {
   return (
     <>
       <Heading>Favourites</Heading>
-      <List>
-        {data.map((anime) => (
-          <FavouriteAnime anime={anime} key={anime.anilistId} />
-        ))}
-      </List>
+      <Filters>
+        <Filters.Menu>
+          <Filters.Button operation={"sort-desc"}>Newest</Filters.Button>
+          <Filters.Button operation={"sort-asc"}>Older</Filters.Button>
+        </Filters.Menu>
+        <Filters.Window
+          data={data}
+          render={(anime) => (
+            <FavouriteAnime anime={anime} key={anime.anilistId} />
+          )}
+        />
+      </Filters>
     </>
   );
 }

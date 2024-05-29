@@ -10,6 +10,7 @@ const StyledAppLayout = styled.div`
 `;
 
 const Main = styled.main`
+  position: relative;
   overflow: scroll;
   scrollbar-width: none;
   padding:0 5%;
