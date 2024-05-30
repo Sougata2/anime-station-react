@@ -12,7 +12,7 @@ const rotateAnimation = keyframes`
   }
 `;
 const StyledButton = styled.button`
-  position: absolute;
+  position: fixed;
   right: 4rem;
   bottom: 3rem;
   padding: 14px 18px;

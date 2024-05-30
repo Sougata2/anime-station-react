@@ -38,7 +38,7 @@ const PageHeader = styled.div`
 `;
 
 const Styledtitle = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 65px;
   left: 50%;
   transform: translateX(-50%);
