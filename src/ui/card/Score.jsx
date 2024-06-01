@@ -7,6 +7,7 @@ const StyledScore = styled.div`
 `;
 
 function Score({ children }) {
+  if (isNaN(children)) return null;
   return <StyledScore>{children}</StyledScore>;
 }
 
