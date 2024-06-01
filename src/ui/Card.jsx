@@ -14,6 +14,7 @@ import Image from "./card/Image";
 import Title from "./card/Title";
 import Score from "./card/Score";
 import View from "./card/View";
+import { useNavigate } from "react-router-dom";
 
 const StyledCard = styled.div`
   position: absolute;
@@ -46,6 +47,7 @@ const CardBody = styled.div`
 
 function Card({ animeId, onClose }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const {
     isPending,
     isRefetching,
@@ -78,7 +80,7 @@ function Card({ animeId, onClose }) {
       </CardBody>
       <CloseBtn handleClick={onClose}>Close</CloseBtn>
       <Favourite />
-      <View />
+      <View handleClick={() => navigate(`/anime/${info.id}`)} />
     </StyledCard>
   );
 }

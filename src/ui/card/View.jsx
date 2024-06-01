@@ -12,12 +12,9 @@ const StyledView = styled.div`
     color: #03030373;
   }
 `;
-function View() {
-  const { data } = useQuery({
-    queryKey: ["current-anime"],
-  });
+function View({ handleClick }) {
   return (
-    <StyledView onClick={() => console.log(data)}>
+    <StyledView onClick={handleClick}>
       <i className="fa-solid fa-eye"></i>
     </StyledView>
   );

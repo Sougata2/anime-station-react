@@ -1,12 +1,14 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import AppLayout from "./ui/AppLayout";
+import { Toaster } from "react-hot-toast";
+
 import RecentEpisodes from "./pages/RecentEpisodes";
-import Home from "./pages/Home";
 import Favourite from "./pages/Favourite";
+import AppLayout from "./ui/AppLayout";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
-import { Toaster } from "react-hot-toast";
+import Anime from "./pages/Anime";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +31,7 @@ function App() {
             <Route path="recent-episodes" element={<RecentEpisodes />} />
             <Route path="home" element={<Home />} />
             <Route path="favourite" element={<Favourite />} />
+            <Route path="anime/:id" element={<Anime />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
           </Route>
@@ -46,7 +49,7 @@ function App() {
           },
           style: {
             fontFamily: '"Poetsen One", sans-serif',
-            color: "#1a1a1a82"
+            color: "#1a1a1a82",
           },
         }}
       />
