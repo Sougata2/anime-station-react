@@ -1,5 +1,19 @@
-import HorizontalBox from "../../ui/HorizontalBox";
-import VerticleBox from "../../ui/VerticleBox";
+import Image from "../../ui/Image";
+import styled from "styled-components";
+
+const Box = styled.div`
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 30px;
+  @media (max-width: 800px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+`;
+
+const ImageContainer = styled.div`
+  margin: auto;
+`;
 
 function About({ data }) {
   const { info, moreInfo } = data;
@@ -33,27 +47,25 @@ function About({ data }) {
     studios,
   } = moreInfo;
   return (
-    <HorizontalBox gap={"40px"}>
-      <VerticleBox>
-        <img src={poster} alt="" />
-      </VerticleBox>
-      <VerticleBox gap={"20px"} width={"700px"}>
+    <Box>
+      <ImageContainer>
+        <Image width={"200px"}>{poster}</Image>
+      </ImageContainer>
+      <div>
         <div>{name}</div>
-        <HorizontalBox gap={"5px"}>
-          <div>{rating}</div>
-          <div>{quality}</div>
-          <div>{sub}</div>
-          <div>{dub}</div>
-          <div>{type}</div>
-          <div>{duration}</div>
-        </HorizontalBox>
-        <HorizontalBox gap={"10px"}>
-          <button>Watch Now</button>
-          <button>Add to Favourites</button>
-        </HorizontalBox>
+        <div>
+          <span>{rating}</span>
+          <span>{quality}</span>
+          <span>{sub}</span>
+          <span>{dub}</span>
+          <span>{type}</span>
+          <span>{duration}</span>
+        </div>
+        <button>Watch Now</button>
+        <button>Add to Favourites</button>
         <div>{description}</div>
-      </VerticleBox>
-      <VerticleBox gap={"15px"} width={"300px"}>
+      </div>
+      <div>
         <div>{japanese}</div>
         <div>{name}</div>
         <div>{aired}</div>
@@ -61,15 +73,15 @@ function About({ data }) {
         <div>{duration}</div>
         <div>{status}</div>
         <div>{malscore}</div>
-        <HorizontalBox $gap={"5px"}>
+        <div>
           {genres.map((genre, i) => (
             <span key={i}>{genre}</span>
           ))}
-        </HorizontalBox>
+        </div>
         <div>{studios}</div>
         <div>{producers}</div>
-      </VerticleBox>
-    </HorizontalBox>
+      </div>
+    </Box>
   );
 }
 
