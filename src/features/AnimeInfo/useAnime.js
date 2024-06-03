@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function useAnimeInfoById(animeId) {
   const { isPending, isRefetching, data, error } = useQuery({
-    queryKey: ["current-anime", animeId],
+    queryKey: ["current-anime"],
     queryFn: () => animeAboutInfoApi(animeId),
   });
   return { isPending, isRefetching, data, error };
