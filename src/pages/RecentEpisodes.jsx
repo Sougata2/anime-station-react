@@ -102,7 +102,7 @@ function RecentEpisodes() {
       </PageHeader>
       <div>
         <List>
-          {scheduledAnimes.map((anime) => (
+          {scheduledAnimes?.map((anime) => (
             <RecentEpisode anime={anime} key={anime.id} />
           ))}
         </List>

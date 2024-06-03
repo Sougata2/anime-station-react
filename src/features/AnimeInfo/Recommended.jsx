@@ -1,8 +1,6 @@
-import HorizontalBox from "../../ui/HorizontalBox";
-
 function Recommended({ data }) {
   return (
-    <HorizontalBox gap={"40px"}>
+    <>
       {data.map((anime) => (
         <div key={anime.id}>
           <img src={anime.poster} alt="" />
@@ -14,7 +12,7 @@ function Recommended({ data }) {
           <div>{anime.type}</div>
         </div>
       ))}
-    </HorizontalBox>
+    </>
   );
 }
 
