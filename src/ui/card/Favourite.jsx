@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useAddToFavourite } from "../../features/Favourite/useAddToFavourite";
+import { getFormattedTime } from "../../helper/format";
 import { useInFavourites } from "../../features/Favourite/useInFavourites";
 import { useCurrentAnime } from "../../features/AnimeInfo/useAnime";
 
@@ -38,19 +39,7 @@ function Favourite() {
     const { id, name, poster, anilistId } = info;
     ref.current.style.color = "#03030373";
     setIsDisabled(true);
-
-    const time = Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false,
-      timeZone: "Asia/Kolkata",
-    }).format(new Date());
-    const timeStamp = new Date(time).toISOString();
-
+    const timeStamp = getFormattedTime();
     add({ id, name, poster, anilistId, timeStamp });
   }
   return (
