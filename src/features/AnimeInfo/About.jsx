@@ -158,7 +158,7 @@ function About({ data }) {
         <GenreBoder />
         <Genres>
           <Label>Genres: </Label>
-          {genres.map((genre, i) => (
+          {genres?.map((genre, i) => (
             <Genre key={i}>{genre}</Genre>
           ))}
         </Genres>
