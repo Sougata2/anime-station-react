@@ -1,4 +1,6 @@
 import { useFavourites } from "../features/Favourite/useFavourites";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../services/fireStore";
 
 import FavouriteAnime from "../ui/FavouriteAnime";
 import Heading from "../ui/Heading";
@@ -6,8 +8,10 @@ import Spinner from "../ui/Spinner";
 import Filters from "../ui/Filters";
 
 function Favourite() {
+  const navigate = useNavigate();
   const { isPending, isRefetching, data } = useFavourites();
   if (isPending || isRefetching) return <Spinner />;
+  if (!auth.currentUser) return navigate("/login");
   return (
     <>
       <Heading>Favourites</Heading>
