@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 const StyledFooter = styled.footer`
-  padding-top: 10px;
+  padding-top: 5px;
   font-size: 20px;
   text-align: center;
 `;
