@@ -8,8 +8,6 @@ function Profile({ user }) {
   const lastLogin = moment(+user.metadata.lastLoginAt).format(
     "MMM Do YY, h:mm:ss a"
   );
-  console.log(lastLogin);
-  console.log(user);
   return (
     <>
       <aside class="profile-card">

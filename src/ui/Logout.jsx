@@ -1,6 +1,6 @@
-import React from "react";
-import { logout } from "../services/authApi";
+import useLogout from "../features/Authentication/useLogout";
 import styled from "styled-components";
+
 const Button = styled.button`
   cursor: pointer;
   font-family: inherit;
@@ -18,7 +18,12 @@ const Button = styled.button`
 `;
 
 function Logout() {
-  return <Button onClick={logout}>Logout</Button>;
+  const { isLoggingOut, logout } = useLogout();
+  return (
+    <Button onClick={logout} disabled={isLoggingOut}>
+      Logout
+    </Button>
+  );
 }
 
 export default Logout;

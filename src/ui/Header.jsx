@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
 import { auth } from "../services/fireStore";
+import { onAuthStateChanged } from "firebase/auth";
 
 const NavBar = styled.div`
   font-family: "Poetsen One", sans-serif;
@@ -84,8 +85,14 @@ const Bar = styled.span`
   border-radius: 10px;
 `;
 function Header() {
-  const user = auth.currentUser;
+  const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(function () {
+    onAuthStateChanged(auth, (user) => {
+      if (user) setUser(user);
+      else setUser(null);
+    });
+  }, []);
   return (
     <NavBar $isvisible={isOpen}>
       <NavBrand>Anime Station</NavBrand>
