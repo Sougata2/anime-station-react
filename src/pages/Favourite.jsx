@@ -6,12 +6,19 @@ import FavouriteAnime from "../ui/FavouriteAnime";
 import Heading from "../ui/Heading";
 import Spinner from "../ui/Spinner";
 import Filters from "../ui/Filters";
+import { useEffect } from "react";
 
 function Favourite() {
   const navigate = useNavigate();
   const { isPending, isRefetching, data } = useFavourites();
+  useEffect(
+    function () {
+      if (!auth.currentUser) return navigate("/login");
+    },
+    [navigate]
+  );
+  
   if (isPending || isRefetching) return <Spinner />;
-  if (!auth.currentUser) return navigate("/login");
   return (
     <>
       <Heading>Favourites</Heading>

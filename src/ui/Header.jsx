@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import styled from "styled-components";
+import { auth } from "../services/fireStore";
 
 const NavBar = styled.div`
   font-family: "Poetsen One", sans-serif;
@@ -83,6 +84,7 @@ const Bar = styled.span`
   border-radius: 10px;
 `;
 function Header() {
+  const user = auth.currentUser;
   const [isOpen, setIsOpen] = useState(false);
   return (
     <NavBar $isvisible={isOpen}>
@@ -97,7 +99,7 @@ function Header() {
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
         <NavItem to={"/about"}>About</NavItem>
-        <NavItem to={"/login"}>Login</NavItem>
+        <NavItem to={"/login"}>{user ? "Profile" : "Login"}</NavItem>
       </NavItems>
     </NavBar>
   );
