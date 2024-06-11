@@ -21,7 +21,7 @@ function Login() {
   return (
     <>
       <Heading>{user ? "Profile" : "Login"}</Heading>
-      {user ? <Profile user={user} /> : <LoginForm />}
+      {user ? <Profile/> : <LoginForm />}
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { useLogin } from "../features/Authentication/useLogin";
 import { useForm } from "react-hook-form";
+import GoogleLogin from "./GoogleLogin";
 
 function LoginForm() {
   const { login, isLogingIn } = useLogin();
@@ -117,21 +118,7 @@ function LoginForm() {
         <span>Or</span>
         <hr className="line" />
       </div>
-      <button
-        title="Sign In"
-        type="submit"
-        className="sign-in_ggl"
-        disabled={isLogingIn}
-      >
-        <div style={{ display: "inline", width: "35px", height: "35px" }}>
-          <img
-            src="google-icon.png"
-            alt="google"
-            style={{ height: "100%", width: "100%" }}
-          />
-        </div>
-        <span>Sign In with Google</span>
-      </button>
+      <GoogleLogin />
       <p className="note">Terms of use &amp; Conditions</p>
     </form>
   );

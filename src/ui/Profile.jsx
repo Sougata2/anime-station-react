@@ -1,7 +1,10 @@
 import moment from "moment";
 import Logout from "./Logout";
+import { auth } from "../services/fireStore";
 
-function Profile({ user }) {
+function Profile() {
+  const user = auth.currentUser;
+  console.log(user);
   const displayName = user.displayName;
   const email = user.email;
   const photoURL = user.photoURL;
@@ -10,7 +13,7 @@ function Profile({ user }) {
   );
   return (
     <>
-      <aside class="profile-card">
+      <aside className="profile-card">
         <header>
           <a href="/">
             <img src={photoURL} alt="..." />
@@ -21,7 +24,7 @@ function Profile({ user }) {
           <h2 className="h2-profile">{email}</h2>
         </header>
 
-        <div class="profile-bio">
+        <div className="profile-bio">
           <p className="p-profile" style={{ paddingBottom: "3px" }}>
             {lastLogin}
           </p>
