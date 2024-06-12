@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import RecentEpisodes from "./pages/RecentEpisodes";
 import Favourite from "./pages/Favourite";
 import AppLayout from "./ui/AppLayout";
+import Episodes from "./pages/Episodes";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -32,6 +33,7 @@ function App() {
             <Route path="home" element={<Home />} />
             <Route path="favourite" element={<Favourite />} />
             <Route path="anime/:id" element={<Anime />} />
+            <Route path="episodes/:id" element={<Episodes />} />
             <Route path="about" element={<About />} />
             <Route path="login" element={<Login />} />
           </Route>

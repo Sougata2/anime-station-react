@@ -14,4 +14,38 @@ async function animeAboutInfoApi(animeId) {
   return data;
 }
 
-export { reacentEpisodesApi, animeAboutInfoApi };
+async function getEpisodes(animeId) {
+  const resp = await fetch(BASE_URL + "anime/episodes/" + animeId);
+  const data = await resp.json();
+  return data;
+}
+
+async function getEpisodeStreamingLinks(
+  episodeId,
+  categoryName = "sub",
+  serverName = "vidstreaming"
+) {
+  try {
+    const resp = await fetch(
+      BASE_URL +
+        "anime/episode-srcs?id=" +
+        episodeId +
+        "&server=" +
+        serverName +
+        "&category=" +
+        categoryName
+    );
+    const data = await resp.json();
+    return data;
+  } catch (error) {
+    console.log(error.message);
+    throw new Error(error);
+  }
+}
+
+export {
+  reacentEpisodesApi,
+  animeAboutInfoApi,
+  getEpisodes,
+  getEpisodeStreamingLinks,
+};

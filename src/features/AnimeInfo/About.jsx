@@ -1,11 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 import FavouriteBtn from "../../ui/About/FavouriteBtn";
 import Description from "../../ui/About/Description";
 import ButtonGrp from "../../ui/About/ButtonGrp";
 import styled from "styled-components";
 import Image from "../../ui/Image";
-import Stat from "../../ui/About/Stat";
-import Label from "../../ui/About/Label";
 import Genre from "../../ui/About/Genre";
+import Label from "../../ui/About/Label";
+import Stat from "../../ui/About/Stat";
 
 const Box = styled.div`
   font-family: "Poetsen One", sans-serif;
@@ -70,6 +72,7 @@ const GenreBoder = styled.span`
 `;
 
 function About({ data }) {
+  const navigate = useNavigate();
   const { info, moreInfo } = data;
   const {
     anilistId,
@@ -118,7 +121,7 @@ function About({ data }) {
           <Stat>{duration}</Stat>
         </StyledStats>
         <ButtonGrp>
-          <button>Watch Now</button>
+          <button onClick={() => navigate(`/episodes/${id}`)}>Watch Now</button>
           <FavouriteBtn
             anilistId={anilistId}
             data={{ id, name, poster, anilistId }}
