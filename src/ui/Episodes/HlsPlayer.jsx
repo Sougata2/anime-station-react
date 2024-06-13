@@ -23,7 +23,7 @@ function HLSPlayer({ url, trks }) {
         ],
       });
     },
-    [trks, url]
+    [url]
   );
 
   return (
@@ -32,9 +32,6 @@ function HLSPlayer({ url, trks }) {
         ref={videoRef}
         id="my-video"
         className="video-js"
-        controls
-        preload="auto"
-        data-setup="{}"
       >
         {trks?.map((trk, i) => (
           <track

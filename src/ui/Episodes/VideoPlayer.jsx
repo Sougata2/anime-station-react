@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
-import errorVideo from "/error.mp4";
+import ErrorVideo from "./ErrorVideo";
 import HLSPlayer from "./HlsPlayer";
 import useVideo from "../../features/Episodes/useVideo";
 import Spinner from "../Spinner";
@@ -34,21 +34,16 @@ function VideoPlayer() {
     serverName
   );
   if (isPending || isRefetching) return <Spinner />;
+  console.log(data)
 
   if (error) toast.error(error.message);
   return (
     <>
       <PlayerContainer>
         {error ? (
-          <video
-            controls={true}
-            src={errorVideo}
-            width={"100%"}
-            height={"100%"}
-            autoPlay
-          />
+          <ErrorVideo />
         ) : (
-          <HLSPlayer url={data?.sources?.at(0).url} trks={data.tracks} />
+          <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
         )}
       </PlayerContainer>
       <Servers
