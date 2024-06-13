@@ -23,34 +23,19 @@ const PlayerContainer = styled.div`
 `;
 
 function VideoPlayer() {
-  const [searchParams] = useSearchParams();
-  const epId = searchParams.get("epId");
+  const { isPending, isRefetching, data } = useVideo();
 
-  const [categoryName, setCategoryName] = useState("sub");
-  const [serverName, setServerName] = useState("vidstreaming");
-  const { isPending, isRefetching, data, error } = useVideo(
-    epId,
-    categoryName,
-    serverName
-  );
   if (isPending || isRefetching) return <Spinner />;
-  console.log(data)
 
-  if (error) toast.error(error.message);
   return (
     <>
       <PlayerContainer>
-        {error ? (
+        {Object.keys(data).includes("status") ? (
           <ErrorVideo />
         ) : (
           <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
         )}
       </PlayerContainer>
-      <Servers
-        epId={epId}
-        setServer={setServerName}
-        setCategory={setCategoryName}
-      />
     </>
   );
 }

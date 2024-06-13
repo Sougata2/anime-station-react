@@ -2,14 +2,23 @@ import styled from "styled-components";
 import useServers from "../../features/Episodes/useServers";
 import { servers_map } from "../../helper/servers";
 import Spinner from "../Spinner";
+import { useSearchParams } from "react-router-dom";
+import useEpisode from "../../features/Episodes/useEpisode";
 const StyledServers = styled.div`
   margin-bottom: 20px;
-`
+`;
 
-function Servers({ epId, setServer, setCategory }) {
-  const { isPending, isRefetching, data, error } = useServers(epId);
-  if (isPending || isRefetching) return <Spinner />;
+function Servers() {
+  const [searchParam, setSearchParam] = useSearchParams();
+  const epId = searchParam.get("epId");
+
+  const { mutate: episode, isPending: gettingEpisode } = useEpisode();
+  const { isPending, isRefetching, data } = useServers(epId);
+
+  if (isPending || isRefetching || gettingEpisode) return <Spinner />;
+
   const { dub, raw, sub } = data;
+  
   return (
     <StyledServers>
       <div>
@@ -20,8 +29,14 @@ function Servers({ epId, setServer, setCategory }) {
               key={i}
               value={s.serverId}
               onClick={(e) => {
-                setServer(servers_map[e.target.value]);
-                setCategory("sub");
+                searchParam.set("server", servers_map[e.target.value]);
+                searchParam.set("category", "sub");
+                setSearchParam(searchParam);
+                episode({
+                  epId,
+                  category: "sub",
+                  server: servers_map[e.target.value],
+                });
               }}
             >
               {servers_map[s.serverId]}
@@ -36,8 +51,14 @@ function Servers({ epId, setServer, setCategory }) {
               key={i}
               value={s.serverId}
               onClick={(e) => {
-                setServer(servers_map[e.target.value]);
-                setCategory("dub");
+                searchParam.set("server", servers_map[e.target.value]);
+                searchParam.set("category", "dub");
+                setSearchParam(searchParam);
+                episode({
+                  epId,
+                  category: "dub",
+                  server: servers_map[e.target.value],
+                });
               }}
             >
               {servers_map[s.serverId]}
@@ -52,8 +73,14 @@ function Servers({ epId, setServer, setCategory }) {
               key={i}
               value={s.serverId}
               onClick={(e) => {
-                setServer(servers_map[e.target.value]);
-                setCategory("raw");
+                searchParam.set("server", servers_map[e.target.value]);
+                searchParam.set("category", "raw");
+                setSearchParam(searchParam);
+                episode({
+                  epId,
+                  category: "raw",
+                  server: servers_map[e.target.value],
+                });
               }}
             >
               {servers_map[s.serverId]}

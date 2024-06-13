@@ -1,18 +1,16 @@
-import { getEpisodeStreamingLinks } from "../../services/animeApi";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import { getEpisodeStreamingLinks } from "../../services/animeApi";
 
-function useVideo(epId, categoryName, serverName) {
+function useVideo() {
+  const [searchParam] = useSearchParams();
+  const epId = searchParam.get("epId");
+  const category = searchParam.get("category");
+  const server = searchParam.get("server");
+
   const { isPending, isRefetching, data, error } = useQuery({
-    queryKey: ["episode", epId, categoryName, serverName],
-    queryFn: async () => {
-      const resObj = await getEpisodeStreamingLinks(
-        epId,
-        categoryName,
-        serverName
-      );
-      if (resObj.status) throw new Error(resObj.message);
-      return resObj;
-    },
+    queryKey: ["episode"],
+    queryFn: () => getEpisodeStreamingLinks(epId, category, server),
   });
   return { isPending, isRefetching, data, error };
 }

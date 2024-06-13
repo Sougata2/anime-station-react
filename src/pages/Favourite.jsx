@@ -1,12 +1,12 @@
 import { useFavourites } from "../features/Favourite/useFavourites";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { auth } from "../services/fireStore";
 
 import FavouriteAnime from "../ui/FavouriteAnime";
 import Heading from "../ui/Heading";
 import Spinner from "../ui/Spinner";
 import Filters from "../ui/Filters";
-import { useEffect } from "react";
 
 function Favourite() {
   const navigate = useNavigate();

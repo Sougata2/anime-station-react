@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
+import useEpisode from "../../features/Episodes/useEpisode";
 
 const Box = styled.div`
   cursor: pointer;
@@ -19,11 +20,18 @@ const IsFiller = styled.div`
   display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
 `;
 function Episode({ episode }) {
+  
   const [searchParams, setSearchParms] = useSearchParams();
+  const category = searchParams.get("category");
+  const server = searchParams.get("server");
+  const { mutate } = useEpisode();
+  
   const { title, episodeId, isFiller, number } = episode;
+  
   function handleClick() {
     searchParams.set("epId", episodeId);
     setSearchParms(searchParams);
+    mutate({ epId: episodeId, category, server });
   }
   return (
     <Box $isDark={number % 2 !== 0} onClick={handleClick}>
