@@ -1,9 +1,16 @@
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+
+import errorVideo from "/error.mp4";
 import HLSPlayer from "./HlsPlayer";
 import useVideo from "../../features/Episodes/useVideo";
-import styled from "styled-components";
 import Spinner from "../Spinner";
+import Servers from "./Servers";
+import styled from "styled-components";
+import toast from "react-hot-toast";
 
 const PlayerContainer = styled.div`
+  display: inline-block;
   height: 500px;
   width: 100%;
   margin: 20px 0;
@@ -16,13 +23,41 @@ const PlayerContainer = styled.div`
 `;
 
 function VideoPlayer() {
-  const { isPending, isRefetching, data, error } = useVideo();
+  const [searchParams] = useSearchParams();
+  const epId = searchParams.get("epId");
+
+  const [categoryName, setCategoryName] = useState("sub");
+  const [serverName, setServerName] = useState("vidstreaming");
+  const { isPending, isRefetching, data, error } = useVideo(
+    epId,
+    categoryName,
+    serverName
+  );
   if (isPending || isRefetching) return <Spinner />;
+
+  if (error) toast.error(error.message);
   return (
-    <PlayerContainer>
-      <HLSPlayer src={data?.sources?.at(0).url} />
-    </PlayerContainer>
+    <>
+      <PlayerContainer>
+        {error ? (
+          <video
+            controls={true}
+            src={errorVideo}
+            width={"100%"}
+            height={"100%"}
+            autoPlay
+          />
+        ) : (
+          <HLSPlayer url={data?.sources?.at(0).url} trks={data.tracks} />
+        )}
+      </PlayerContainer>
+      <Servers
+        epId={epId}
+        setServer={setServerName}
+        setCategory={setCategoryName}
+      />
+    </>
   );
 }
-// data.sources.url
+
 export default VideoPlayer;

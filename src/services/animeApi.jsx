@@ -25,22 +25,23 @@ async function getEpisodeStreamingLinks(
   categoryName = "sub",
   serverName = "vidstreaming"
 ) {
-  try {
-    const resp = await fetch(
-      BASE_URL +
-        "anime/episode-srcs?id=" +
-        episodeId +
-        "&server=" +
-        serverName +
-        "&category=" +
-        categoryName
-    );
-    const data = await resp.json();
-    return data;
-  } catch (error) {
-    console.log(error.message);
-    throw new Error(error);
-  }
+  const resp = await fetch(
+    BASE_URL +
+      "anime/episode-srcs?id=" +
+      episodeId +
+      "&server=" +
+      serverName +
+      "&category=" +
+      categoryName
+  );
+  const data = await resp.json();
+  return data;
+}
+
+async function getEpisodeServers(epId) {
+  const resp = await fetch(BASE_URL + "anime/servers?episodeId=" + epId);
+  const data = await resp.json();
+  return data;
 }
 
 export {
@@ -48,4 +49,5 @@ export {
   animeAboutInfoApi,
   getEpisodes,
   getEpisodeStreamingLinks,
+  getEpisodeServers,
 };
