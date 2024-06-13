@@ -1,6 +1,7 @@
 import { useSearchParams } from "react-router-dom";
-import styled from "styled-components";
+
 import useEpisode from "../../features/Episodes/useEpisode";
+import styled from "styled-components";
 
 const Box = styled.div`
   cursor: pointer;

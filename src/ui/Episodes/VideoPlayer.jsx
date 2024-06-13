@@ -1,13 +1,8 @@
-import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
-
 import ErrorVideo from "./ErrorVideo";
 import HLSPlayer from "./HlsPlayer";
 import useVideo from "../../features/Episodes/useVideo";
 import Spinner from "../Spinner";
-import Servers from "./Servers";
 import styled from "styled-components";
-import toast from "react-hot-toast";
 
 const PlayerContainer = styled.div`
   display: inline-block;

@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
 import { getEpisodeStreamingLinks } from "../../services/animeApi";
+import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 function useVideo() {
   const [searchParam] = useSearchParams();

@@ -1,9 +1,11 @@
-import styled from "styled-components";
-import useServers from "../../features/Episodes/useServers";
-import { servers_map } from "../../helper/servers";
-import Spinner from "../Spinner";
 import { useSearchParams } from "react-router-dom";
+import { servers_map } from "../../helper/servers";
+
+import useServers from "../../features/Episodes/useServers";
 import useEpisode from "../../features/Episodes/useEpisode";
+import styled from "styled-components";
+import Spinner from "../Spinner";
+
 const StyledServers = styled.div`
   margin-bottom: 20px;
 `;
