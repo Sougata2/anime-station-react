@@ -24,9 +24,9 @@ function Servers() {
   return (
     <StyledServers>
       <div>
-        {sub.length !== 0 && <span>Sub: </span>}
-        {sub.length !== 0 &&
-          sub.map((s, i) => (
+        {sub?.length !== 0 && <span>Sub: </span>}
+        {sub?.length !== 0 &&
+          sub?.map((s, i) => (
             <button
               key={i}
               value={s.serverId}
@@ -46,9 +46,9 @@ function Servers() {
           ))}
       </div>
       <div>
-        {dub.length !== 0 && <span>Dub: </span>}
-        {dub.length !== 0 &&
-          dub.map((s, i) => (
+        {dub?.length !== 0 && <span>Dub: </span>}
+        {dub?.length !== 0 &&
+          dub?.map((s, i) => (
             <button
               key={i}
               value={s.serverId}
@@ -68,9 +68,9 @@ function Servers() {
           ))}
       </div>
       <div>
-        {raw.length !== 0 && <span>Raw: </span>}
-        {raw.length !== 0 &&
-          raw.map((s, i) => (
+        {raw?.length !== 0 && <span>Raw: </span>}
+        {raw?.length !== 0 &&
+          raw?.map((s, i) => (
             <button
               key={i}
               value={s.serverId}
