@@ -267,7 +267,7 @@ body {
 .p-profile {
   margin: 0px;
   border-radius: 20px;
-  background-color: #5AB2FF;
+  background-color: #5ab2ff;
   color: white;
 }
 .profile-card {
@@ -354,8 +354,6 @@ body {
   -webkit-animation: moveIn 1s 3.1s ease forwards;
   animation: moveIn 1s 3.1s ease forwards;
 }
-
-
 
 @media screen and (min-aspect-ratio: 4/3) {
   @-webkit-keyframes puff {
@@ -662,4 +660,51 @@ body {
   100% {
     opacity: 0;
   }
+}
+
+/* Vido.js classes */
+.video-js .vjs-skip-forward-10 {
+  position: absolute;
+  font-size: 25px;
+  right: 15px;
+  transform: translateY(-270px);
+}
+.video-js .vjs-skip-backward-10 {
+  position: absolute;
+  font-size: 25px;
+  left: 15px;
+  transform: translateY(-270px);
+}
+.video-js .vjs-play-control {
+  cursor: pointer;
+  position: absolute;
+  font-size: 45px;
+  top: -280px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 800px) {
+  .video-js .vjs-skip-forward-10 {
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    transform: translateY(-150px);
+  }
+  .video-js .vjs-skip-backward-10 {
+    position: absolute;
+    font-size: 20px;
+    left: 15px;
+    transform: translateY(-150px);
+  }
+  .video-js .vjs-play-control {
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    font-size: 25px;
+    top: -135px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
 }
