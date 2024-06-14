@@ -13,6 +13,12 @@ function HLSPlayer({ url, trks }) {
   useEffect(
     function () {
       videojs(videoRef.current, {
+        controlBar: {
+          skipButtons: {
+            backward: 10,
+            forward: 10,
+          },
+        },
         controls: true,
         preload: "auto",
         sources: [
@@ -28,11 +34,7 @@ function HLSPlayer({ url, trks }) {
 
   return (
     <>
-      <Video
-        ref={videoRef}
-        id="my-video"
-        className="video-js"
-      >
+      <Video ref={videoRef} id="my-video" className="video-js">
         {trks?.map((trk, i) => (
           <track
             key={i}
