@@ -1,7 +1,6 @@
 import ErrorVideo from "./ErrorVideo";
 import HLSPlayer from "./HlsPlayer";
 import useVideo from "../../features/Episodes/useVideo";
-import Spinner from "../Spinner";
 import styled from "styled-components";
 import EpisodeLoader from "./EpisodeLoader";
 
