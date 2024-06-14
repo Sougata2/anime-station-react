@@ -4,7 +4,6 @@ import { auth } from "../services/fireStore";
 
 function Profile() {
   const user = auth.currentUser;
-  console.log(user);
   const displayName = user.displayName;
   const email = user.email;
   const photoURL = user.photoURL;

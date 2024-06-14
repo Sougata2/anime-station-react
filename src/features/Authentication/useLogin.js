@@ -15,7 +15,6 @@ export function useLogin() {
       toast.success(`Welcome ${user.displayName}`);
     },
     onError: (error) => {
-      console.log(error.message);
       toast.error(error.message);
     },
   });
