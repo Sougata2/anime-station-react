@@ -87,8 +87,9 @@ const Container = styled.div`
   align-items: center;
   width: 1000px;
   margin: 0 auto;
+  border-radius: 10px;
   @media (max-width: 800px) {
-    width: 280px;
+    width: 100%;
   }
 `;
 
