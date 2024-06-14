@@ -9,9 +9,12 @@ const Box = styled.div`
   color: #333333c3;
   display: grid;
   gap: 10px;
-  grid-template-columns: 20px 1fr 40px;
+  grid-template-columns: 20px 1fr 70px;
   padding: 10px 0;
-  background-color: ${({ $isDark }) => ($isDark ? "#3333" : "")};
+  padding-left: 10px;
+  border-radius: 20px;
+  /* background-color: ${({ $isDark }) => ($isDark ? "#3333" : "")}; */
+  background-color: #F0F0F0;
   ${({ $isactive }) =>
     $isactive
       ? css`
@@ -28,6 +31,13 @@ const EpNumber = styled.span`
 const EpTitle = styled.div``;
 const IsFiller = styled.div`
   display: ${({ $isVisible }) => ($isVisible ? "block" : "none")};
+  background-color: #e384ff;
+  color: white;
+  width: max-content;
+  padding: 1px 10px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 function Episode({ episode }) {
   const [searchParams, setSearchParms] = useSearchParams();

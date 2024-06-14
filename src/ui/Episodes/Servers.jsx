@@ -31,7 +31,6 @@ const Btn = styled.button`
   border-radius: 20px;
   font-family: inherit;
   ${({ $isactive }) => {
-    
     return $isactive
       ? css`
           background-color: #e384ff;
@@ -52,7 +51,12 @@ function Servers() {
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
   const { isPending, isRefetching, data } = useServers(epId);
 
-  if (isPending || isRefetching || gettingEpisode) return <Spinner />;
+  if (isPending || isRefetching || gettingEpisode)
+    return (
+      <div style={{ fontFamily: '"Poetsen One", sans-serif' }}>
+        Loading Servers...
+      </div>
+    );
 
   const { dub, raw, sub } = data;
 

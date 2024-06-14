@@ -132,9 +132,9 @@ const Load = styled.span`
 function EpisodeLoader() {
   return (
     <Container>
-      <Loader class="loader">
-        <LoaderText class="loader-text">loading</LoaderText>
-        <Load class="load"></Load>
+      <Loader className="loader">
+        <LoaderText className="loader-text">loading</LoaderText>
+        <Load className="load"></Load>
       </Loader>
     </Container>
   );
