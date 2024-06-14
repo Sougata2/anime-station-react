@@ -51,16 +51,3 @@ function HLSPlayer({ url, trks }) {
 }
 
 export default HLSPlayer;
-
-{
-  /* <video 
-controls="" 
-id="video" 
-class="sc-brPMkR dRXEFm" 
-src="blob:http://localhost:5173/f03a4c80-1aea-48cc-a742-6c7893f6a9eb">
-  <track 
-  src="https://s.megastatics.com/subtitle/93a7db2cafc9b21ef71a9f58bbf61867/93a7db2cafc9b21ef71a9f58bbf61867.vtt" kind="subtitles" label="English" srclang="en" default=""><track src="https://s.megastatics.com/subtitle/02a446fe7870aec5cf8e5d6af00a5f85/eng-2.vtt" 
-  kind="subtitles" 
-  label="English" 
-  srclang="en"></video> */
-}
