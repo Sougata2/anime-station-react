@@ -2,11 +2,12 @@ import { useSearchParams } from "react-router-dom";
 import { useEpisodes } from "../features/Episodes/useEpisodes";
 import { useEffect } from "react";
 
+import StyledEpisodes from "../ui/Episodes/StyledEpisodes";
 import EpisodeList from "../ui/Episodes/EpisodeList";
 import VideoPlayer from "../ui/Episodes/VideoPlayer";
-import Spinner from "../ui/Spinner";
 import useEpisode from "../features/Episodes/useEpisode";
 import Servers from "../ui/Episodes/Servers";
+import Spinner from "../ui/Spinner";
 
 function Episodes() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,11 +28,11 @@ function Episodes() {
   );
   if (isLoading || isRefetching || gettingEpisode) return <Spinner />;
   return (
-    <>
+    <StyledEpisodes>
       <VideoPlayer />
       <Servers />
       <EpisodeList data={data} />
-    </>
+    </StyledEpisodes>
   );
 }
 

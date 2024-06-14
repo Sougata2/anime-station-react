@@ -6,7 +6,7 @@ const Video = styled.video`
 `;
 function ErrorVideo() {
   return (
-    <Video controls preload="auto">
+    <Video controls preload="auto" autoPlay>
       <source src="/error.mp4" />
     </Video>
   );

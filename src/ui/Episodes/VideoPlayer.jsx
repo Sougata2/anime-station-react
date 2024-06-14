@@ -6,14 +6,13 @@ import styled from "styled-components";
 
 const PlayerContainer = styled.div`
   display: inline-block;
-  height: 500px;
-  width: 100%;
-  margin: 20px 0;
   border-radius: 10px;
   overflow: hidden;
-
+  width: 1000px;
+  margin: 0 auto;
   @media (max-width: 800px) {
-    height: 200px;
+    width: 100%;
+    height: 280px;
   }
 `;
 
