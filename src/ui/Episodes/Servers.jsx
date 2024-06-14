@@ -31,7 +31,7 @@ const Btn = styled.button`
   border-radius: 20px;
   font-family: inherit;
   ${({ $isactive }) => {
-    console.log($isactive);
+    
     return $isactive
       ? css`
           background-color: #e384ff;
@@ -48,7 +48,6 @@ function Servers() {
   const epId = searchParam.get("epId");
   const activeServer = searchParam.get("server");
   const activeCategory = searchParam.get("category");
-  console.log(activeCategory, activeServer);
 
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
   const { isPending, isRefetching, data } = useServers(epId);
