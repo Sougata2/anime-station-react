@@ -685,29 +685,6 @@ body {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 11000px) {
-  .video-js .vjs-skip-forward-10 {
-    position: absolute;
-    font-size: 25px;
-    right: 15px;
-    transform: translateY(-250px);
-  }
-  .video-js .vjs-skip-backward-10 {
-    position: absolute;
-    font-size: 25px;
-    left: 15px;
-    transform: translateY(-250px);
-  }
-  .video-js .vjs-play-control {
-    cursor: pointer;
-    position: absolute;
-    font-size: 45px;
-    top: -260px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
 @media (max-width: 800px) {
   .video-js .vjs-skip-forward-10 {
     position: absolute;
