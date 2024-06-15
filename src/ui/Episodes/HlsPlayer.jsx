@@ -1,3 +1,4 @@
+import Hls from "hls.js";
 import React, { useRef, useEffect } from "react";
 
 import styled from "styled-components";
@@ -12,29 +13,37 @@ function HLSPlayer({ url, trks }) {
   const videoRef = useRef(null);
   useEffect(
     function () {
-      videojs(videoRef.current, {
-        controlBar: {
-          skipButtons: {
-            backward: 10,
-            forward: 10,
+      videojs(
+        videoRef.current,
+        {
+          controlBar: {
+            skipButtons: {
+              backward: 10,
+              forward: 10,
+            },
           },
+          controls: true,
+          preload: "auto",
+          // sources: [
+          //   {
+          //     src: url,
+          //     type: "application/x-mpegURL",
+          //   },
+          // ],
         },
-        controls: true,
-        preload: "auto",
-        sources: [
-          {
-            src: url,
-            type: "application/x-mpegURL",
-          },
-        ],
-      });
+        function () {
+          const hls = new Hls();
+          hls.loadSource(url);
+          hls.attachMedia(videoRef.current);
+        }
+      );
     },
     [url]
   );
 
   return (
     <>
-      <Video ref={videoRef} id="my-video" className="video-js">
+      <Video ref={videoRef} id="my-video" className="video-js" controls>
         {trks?.map((trk, i) => (
           <track
             key={i}
