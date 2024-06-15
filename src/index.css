@@ -690,22 +690,22 @@ body {
     position: absolute;
     font-size: 20px;
     right: 15px;
-    transform: translateY(-500%);
+    transform: translateY(-400%);
   }
   .video-js .vjs-skip-backward-10 {
     position: absolute;
     font-size: 20px;
     left: 15px;
-    transform: translateY(-500%);
+    transform: translateY(-400%);
   }
   .video-js .vjs-play-control {
     border: none;
     cursor: pointer;
     position: absolute;
     font-size: 25px;
-    top: -470%;
+    top: -360%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+  } 
   
 }
