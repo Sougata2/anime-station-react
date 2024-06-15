@@ -3,7 +3,6 @@ import HLSPlayer from "./HlsPlayer";
 import useVideo from "../../features/Episodes/useVideo";
 import styled from "styled-components";
 import EpisodeLoader from "./EpisodeLoader";
-import NewPlayer from "./NewPlayer";
 
 const PlayerContainer = styled.div`
   display: inline-block;
