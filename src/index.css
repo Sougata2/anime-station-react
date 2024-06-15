@@ -668,21 +668,44 @@ body {
   position: absolute;
   font-size: 25px;
   right: 15px;
-  transform: translateY(-200px);
+  transform: translateY(-250px);
 }
 .video-js .vjs-skip-backward-10 {
   position: absolute;
   font-size: 25px;
   left: 15px;
-  transform: translateY(-200px);
+  transform: translateY(-250px);
 }
 .video-js .vjs-play-control {
   cursor: pointer;
   position: absolute;
   font-size: 45px;
-  top: -200px;
+  top: -250px;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media (max-width: 900px) {
+  .video-js .vjs-skip-forward-10 {
+    position: absolute;
+    font-size: 25px;
+    right: 15px;
+    transform: translateY(-280px);
+  }
+  .video-js .vjs-skip-backward-10 {
+    position: absolute;
+    font-size: 25px;
+    left: 15px;
+    transform: translateY(-200px);
+  }
+  .video-js .vjs-play-control {
+    cursor: pointer;
+    position: absolute;
+    font-size: 45px;
+    top: -200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (max-width: 800px) {
