@@ -24,12 +24,6 @@ function HLSPlayer({ url, trks }) {
           },
           controls: true,
           preload: "auto",
-          // sources: [
-          //   {
-          //     src: url,
-          //     type: "application/x-mpegURL",
-          //   },
-          // ],
         },
         function () {
           const hls = new Hls();
