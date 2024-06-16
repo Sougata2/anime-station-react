@@ -4,7 +4,6 @@ import { servers_map } from "../../helper/servers";
 
 import useServers from "../../features/Episodes/useServers";
 import useEpisode from "../../features/Episodes/useEpisode";
-import Spinner from "../Spinner";
 
 const StyledServers = styled.div`
   font-family: "Poetsen One", sans-serif;

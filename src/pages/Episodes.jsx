@@ -1,4 +1,5 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
+import { getAnimeInfo } from "../services/localStorage";
 import { useEpisodes } from "../features/Episodes/useEpisodes";
 import { useEffect } from "react";
 
@@ -10,13 +11,20 @@ import Servers from "../ui/Episodes/Servers";
 import Spinner from "../ui/Spinner";
 
 function Episodes() {
+  const { id: animeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const { isLoading, isRefetching, data } = useEpisodes();
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
   useEffect(
     function () {
       if (searchParams.get("epId") === null && data) {
-        const id = data.episodes.at(0).episodeId;
+        let id;
+        const savedAnime = getAnimeInfo(animeId);
+        if (savedAnime.epId){
+          id = savedAnime.epId;
+        }else{
+          id = data.episodes.at(0).episodeId;
+        }
         searchParams.set("epId", id);
         searchParams.set("server", "vidstreaming");
         searchParams.set("category", "sub");
@@ -24,7 +32,7 @@ function Episodes() {
         episode({ epId: id, category: "sub", server: "vidstreaming" });
       }
     },
-    [data, searchParams, setSearchParams, episode]
+    [data, searchParams, setSearchParams, episode, animeId]
   );
   if (isLoading || isRefetching || gettingEpisode) return <Spinner />;
   return (
