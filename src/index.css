@@ -664,6 +664,10 @@ body {
 }
 
 /* Vido.js classes */
+.video-js .vjs-progress-control {
+  position: absolute;
+  transform: translateY(-10px);
+}
 .video-js .vjs-play-control {
   cursor: pointer;
   transform: translateX(-6%);
