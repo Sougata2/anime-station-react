@@ -20,9 +20,10 @@ function Episodes() {
       if (searchParams.get("epId") === null && data) {
         let id;
         const savedAnime = getAnimeInfo(animeId);
-        if (savedAnime.epId){
+        console.log(savedAnime);
+        if (savedAnime !== null) {
           id = savedAnime.epId;
-        }else{
+        } else {
           id = data.episodes.at(0).episodeId;
         }
         searchParams.set("epId", id);
