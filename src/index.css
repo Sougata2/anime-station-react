@@ -667,7 +667,7 @@ body {
 .video-js .vjs-play-control {
   cursor: pointer;
   z-index: 1;
-} 
+}
 .video-js .vjs-skip-backward-10 {
   position: absolute;
   left: 40%;
@@ -703,7 +703,7 @@ body {
     cursor: pointer;
     position: relative;
     transform: translateX(-8%);
-  } 
+  }
 }
 
 @media (max-width: 500px) {
@@ -725,5 +725,5 @@ body {
     cursor: pointer;
     position: relative;
     transform: translateX(-11%);
-  } 
+  }
 }

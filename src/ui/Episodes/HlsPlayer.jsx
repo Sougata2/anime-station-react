@@ -22,6 +22,7 @@ function HLSPlayer({ url, trks }) {
               backward: 10,
               forward: 10,
             },
+            pictureInPictureToggle: false,
           },
           controls: true,
           preload: "auto",
@@ -38,7 +39,12 @@ function HLSPlayer({ url, trks }) {
 
   return (
     <>
-      <Video ref={videoRef} id="my-video" className="video-js vjs-theme-city" controls>
+      <Video
+        ref={videoRef}
+        id="my-video"
+        className="video-js vjs-theme-city"
+        controls
+      >
         {trks?.map((trk, i) => (
           <track
             key={i}
