@@ -684,29 +684,6 @@ body {
   z-index: 2;
 }
 
-@media (max-width: 500px) {
-  .video-js .vjs-skip-backward-10 {
-    position: absolute;
-    left: 35%;
-    font-size: 12px;
-    transform: translateX(-50%);
-  }
-
-  .video-js .vjs-skip-forward-10 {
-    position: absolute;
-    font-size: 12px;
-    left: 65%;
-    transform: translateX(-50%);
-  }
-
-  .video-js .vjs-play-control {
-    cursor: pointer;
-    position: relative;
-    transform: translateX(-10%);
-  } 
-}
-
-
 @media (max-width: 800px) {
   .video-js .vjs-skip-backward-10 {
     position: absolute;
@@ -726,5 +703,27 @@ body {
     cursor: pointer;
     position: relative;
     transform: translateX(-8%);
+  } 
+}
+
+@media (max-width: 500px) {
+  .video-js .vjs-skip-backward-10 {
+    position: absolute;
+    left: 35%;
+    font-size: 12px;
+    transform: translateX(-50%);
+  }
+
+  .video-js .vjs-skip-forward-10 {
+    position: absolute;
+    font-size: 12px;
+    left: 65%;
+    transform: translateX(-50%);
+  }
+
+  .video-js .vjs-play-control {
+    cursor: pointer;
+    position: relative;
+    transform: translateX(-11%);
   } 
 }
