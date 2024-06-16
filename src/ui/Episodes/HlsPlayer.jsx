@@ -1,5 +1,6 @@
 import Hls from "hls.js";
 import React, { useRef, useEffect } from "react";
+import "@videojs/themes/dist/city/index.css";
 
 import styled from "styled-components";
 import videojs from "video.js";
@@ -37,7 +38,7 @@ function HLSPlayer({ url, trks }) {
 
   return (
     <>
-      <Video ref={videoRef} id="my-video" className="video-js" controls>
+      <Video ref={videoRef} id="my-video" className="video-js vjs-theme-city" controls>
         {trks?.map((trk, i) => (
           <track
             key={i}

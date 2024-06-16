@@ -664,71 +664,67 @@ body {
 }
 
 /* Vido.js classes */
+.video-js .vjs-play-control {
+  cursor: pointer;
+  z-index: 1;
+} 
+.video-js .vjs-skip-backward-10 {
+  position: absolute;
+  left: 40%;
+  font-size: 15px;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
 .video-js .vjs-skip-forward-10 {
   position: absolute;
-  font-size: 25px;
-  right: 15px;
-  transform: translateY(-250px);
-}
-.video-js .vjs-skip-backward-10 {
-  position: absolute;
-  font-size: 25px;
-  left: 15px;
-  transform: translateY(-250px);
-}
-.video-js .vjs-play-control {
-  cursor: pointer;
-  position: absolute;
-  font-size: 45px;
-  top: -250px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 15px;
+  left: 65%;
+  transform: translateX(-50%);
+  z-index: 2;
 }
 
-@media (max-width: 1500px) {
-  .video-js .vjs-skip-forward-10 {
-    position: absolute;
-  font-size: 25px;
-  right: 15px;
-  transform: translateY(-200px);
-}
-.video-js .vjs-skip-backward-10 {
-  position: absolute;
-  font-size: 25px;
-  left: 15px;
-  transform: translateY(-200px);
-}
-.video-js .vjs-play-control {
-  cursor: pointer;
-  position: absolute;
-  font-size: 45px;
-  top: -200px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-}
-
-@media (max-width: 800px) {
-  .video-js .vjs-skip-forward-10 {
-    position: absolute;
-    font-size: 20px;
-    right: 15px;
-    transform: translateY(-500%);
-  }
+@media (max-width: 500px) {
   .video-js .vjs-skip-backward-10 {
     position: absolute;
-    font-size: 20px;
-    left: 15px;
-    transform: translateY(-500%);
+    left: 35%;
+    font-size: 12px;
+    transform: translateX(-50%);
   }
-  .video-js .vjs-play-control {
-    border: none;
-    cursor: pointer;
+
+  .video-js .vjs-skip-forward-10 {
     position: absolute;
-    font-size: 25px;
-    top: -450%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 12px;
+    left: 65%;
+    transform: translateX(-50%);
+  }
+
+  .video-js .vjs-play-control {
+    cursor: pointer;
+    position: relative;
+    transform: translateX(-10%);
   } 
-  
+}
+
+
+@media (max-width: 800px) {
+  .video-js .vjs-skip-backward-10 {
+    position: absolute;
+    left: 35%;
+    font-size: 12px;
+    transform: translateX(-50%);
+  }
+
+  .video-js .vjs-skip-forward-10 {
+    position: absolute;
+    font-size: 12px;
+    left: 65%;
+    transform: translateX(-50%);
+  }
+
+  .video-js .vjs-play-control {
+    cursor: pointer;
+    position: relative;
+    transform: translateX(-8%);
+  } 
 }
