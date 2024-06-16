@@ -666,6 +666,7 @@ body {
 /* Vido.js classes */
 .video-js .vjs-play-control {
   cursor: pointer;
+  transform: translateX(-6%);
   z-index: 1;
 }
 .video-js .vjs-skip-backward-10 {
@@ -702,7 +703,7 @@ body {
   .video-js .vjs-play-control {
     cursor: pointer;
     position: relative;
-    transform: translateX(-8%);
+    transform: translateX(-10%);
   }
 }
 
@@ -724,6 +725,6 @@ body {
   .video-js .vjs-play-control {
     cursor: pointer;
     position: relative;
-    transform: translateX(-11%);
+    transform: translateX(-15%);
   }
 }
