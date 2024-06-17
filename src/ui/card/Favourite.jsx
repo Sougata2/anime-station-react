@@ -19,8 +19,8 @@ const StyledFavourite = styled.div`
   }
 `;
 
-function Favourite() {
-  const { data: { anime: { info = {} } = {} } = {} } = useCurrentAnime();
+function Favourite({ animeId }) {
+  const { data: { anime: { info = {} } = {} } = {} } = useCurrentAnime(animeId);
   const isFavourite = useInFavourites(info.anilistId);
   const { add } = useAddToFavourite();
 

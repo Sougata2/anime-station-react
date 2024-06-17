@@ -1,19 +1,20 @@
 import { animeAboutInfoApi } from "../../services/animeApi";
 import { useQuery } from "@tanstack/react-query";
 
-function useAnimeInfoById(animeId) {
+function useAnimeCard(animeId) {
   const { isPending, isRefetching, data, error } = useQuery({
-    queryKey: ["current-anime"],
+    queryKey: ["card-anime"],
     queryFn: () => animeAboutInfoApi(animeId),
   });
   return { isPending, isRefetching, data, error };
 }
 
-function useCurrentAnime() {
+function useCurrentAnime(animeId) {
   const { isPending, isRefetching, data, error } = useQuery({
-    queryKey: ["current-anime"],
+    queryKey: ["current-anime", animeId],
+    queryFn: () => animeAboutInfoApi(animeId),
   });
   return { isPending, isRefetching, data, error };
 }
 
-export { useAnimeInfoById, useCurrentAnime };
+export { useCurrentAnime, useAnimeCard };
