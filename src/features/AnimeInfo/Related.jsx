@@ -14,8 +14,10 @@ const Title = styled.div`
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 15px;
+
 `;
 
 function Related({ data }) {
