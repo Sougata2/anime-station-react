@@ -34,6 +34,7 @@ const IsFiller = styled.div`
   background-color: #e384ff;
   color: white;
   width: max-content;
+  height: max-content;
   padding: 1px 10px;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
