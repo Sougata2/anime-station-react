@@ -7,6 +7,7 @@ import useEpisode from "../../features/Episodes/useEpisode";
 
 const StyledServers = styled.div`
   font-family: "Poetsen One", sans-serif;
+  padding-top: 10px;
   margin: auto 0;
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@ const Row = styled.div`
 const Category = styled.div``;
 const ServerList = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   & button {
   }
