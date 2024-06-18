@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 import { auth } from "../../services/fireStore";
 
 function useAddToFavourite() {
-  const user = auth.currentUser;
   const queryClient = useQueryClient();
 
   const { mutate: add, isPending: isAdding } = useMutation({
