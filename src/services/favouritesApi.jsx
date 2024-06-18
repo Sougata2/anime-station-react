@@ -9,7 +9,7 @@ import { auth, db } from "./fireStore";
 
 async function addToFavourite(data = {}) {
   const user = auth.currentUser.displayName;
-  const docRef = doc(db, user + "_favourites", String(data.anilistId));
+  const docRef = doc(db, user + "_favourites", String(data.id));
   await setDoc(docRef, data);
 }
 
