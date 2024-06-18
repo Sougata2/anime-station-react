@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useAnimeCard } from "../features/AnimeInfo/useAnime";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import EpisodesNumber from "./card/EpisodesNumber";
@@ -14,7 +15,6 @@ import Image from "./card/Image";
 import Title from "./card/Title";
 import Score from "./card/Score";
 import View from "./card/View";
-import { useNavigate } from "react-router-dom";
 
 const StyledCard = styled.div`
   position: absolute;

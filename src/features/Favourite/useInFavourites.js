@@ -6,7 +6,7 @@ function useInFavourites(id) {
     queryKey: ["favourites"],
     queryFn: getFavourites,
   });
-  return data?.filter((anime) => anime.anilistId === id).length > 0;
+  return data?.filter((anime) => anime.id === id).length > 0;
 }
 
 export { useInFavourites };

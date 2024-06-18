@@ -18,11 +18,11 @@ const StyledTrash = styled.button`
   }
 `;
 
-function Trash({ anilistId }) {
+function Trash({ id }) {
   const { deleting, isDeleting } = useDeleteFromFavourite();
   function handleClick(e) {
     e.stopPropagation();
-    deleting(anilistId);
+    deleting(id);
   }
   return (
     <StyledTrash disabled={isDeleting} onClick={handleClick}>

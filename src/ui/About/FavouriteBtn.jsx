@@ -2,8 +2,8 @@ import { useAddToFavourite } from "../../features/Favourite/useAddToFavourite";
 import { useInFavourites } from "../../features/Favourite/useInFavourites";
 import { getFormattedTime } from "../../helper/format";
 
-function FavouriteBtn({ anilistId, data }) {
-  const isFavourite = useInFavourites(anilistId);
+function FavouriteBtn({ data }) {
+  const isFavourite = useInFavourites(data.id);
   const { add, isAdding } = useAddToFavourite();
 
   function handleClick() {

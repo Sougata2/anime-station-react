@@ -123,7 +123,6 @@ function About({ data }) {
         <ButtonGrp>
           <button onClick={() => navigate(`/episodes/${id}`)}>Watch Now</button>
           <FavouriteBtn
-            anilistId={anilistId}
             data={{ id, name, poster, anilistId }}
           />
         </ButtonGrp>

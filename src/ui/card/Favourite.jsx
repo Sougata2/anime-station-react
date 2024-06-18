@@ -21,7 +21,7 @@ const StyledFavourite = styled.div`
 
 function Favourite({ animeId }) {
   const { data: { anime: { info = {} } = {} } = {} } = useCurrentAnime(animeId);
-  const isFavourite = useInFavourites(info.anilistId);
+  const isFavourite = useInFavourites(info.id);
   const { add } = useAddToFavourite();
 
   const [isDisabled, setIsDisabled] = useState(false);
