@@ -1,6 +1,6 @@
 import "@videojs/themes/dist/city/index.css";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 
 import videojs from "video.js";
 import styled from "styled-components";
@@ -51,6 +51,46 @@ function HLSPlayer({ url, trks }) {
   const backwardRef = useRef(null);
   const forwardSvgRef = useRef(null);
   const backwardSvgRef = useRef(null);
+  const [player, setPlayer] = useState(null);
+
+  // skip 10 second forward
+  const skipForward = useCallback(() => {
+    player.currentTime(player.currentTime() + 10);
+    forwardSvgRef.current.style.visibility = "visible";
+    setTimeout(() => {
+      forwardSvgRef.current.style.visibility = "hidden";
+    }, 500);
+  }, [player]);
+
+  const skipBackward = useCallback(
+    function () {
+      player.currentTime(player.currentTime() - 10);
+      backwardSvgRef.current.style.visibility = "visible";
+      setTimeout(() => {
+        backwardSvgRef.current.style.visibility = "hidden";
+      }, 500);
+    },
+    [player]
+  );
+
+  // Double tap
+  var tapedTwice = false;
+  function handleDblTap(e) {
+    if (!tapedTwice) {
+      tapedTwice = true;
+      setTimeout(function () {
+        tapedTwice = false;
+      }, 300);
+      return false;
+    }
+    e.preventDefault();
+    //action on double tap goes below
+    if (e.target.id === "back") {
+      skipBackward();
+    } else {
+      skipForward();
+    }
+  }
 
   useEffect(
     function () {
@@ -67,30 +107,22 @@ function HLSPlayer({ url, trks }) {
           const hls = new Hls();
           hls.loadSource(url);
           hls.attachMedia(videoRef.current);
-          const player = this.player_;
-          forwardRef.current.addEventListener("dblclick", function (e) {
-            player.currentTime(player.currentTime() + 10);
-            forwardSvgRef.current.style.visibility = "visible";
-            setTimeout(() => {
-              forwardSvgRef.current.style.visibility = "hidden";
-            }, 500);
-          });
-          backwardRef.current.addEventListener("dblclick", function () {
-            player.currentTime(player.currentTime() - 10);
-            backwardSvgRef.current.style.visibility = "visible";
-            setTimeout(() => {
-              backwardSvgRef.current.style.visibility = "hidden";
-            }, 500);
-          });
+          setPlayer(this.player_);
+          forwardRef.current.addEventListener("dblclick", skipForward);
+          backwardRef.current.addEventListener("dblclick", skipBackward);
         }
       );
     },
-    [url]
+    [player, skipBackward, skipForward, url]
   );
 
   return (
     <>
-      <SkipButtonBackward ref={backwardRef}>
+      <SkipButtonBackward
+        id="back"
+        ref={backwardRef}
+        onTouchStart={handleDblTap}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 64 64"
@@ -118,7 +150,11 @@ function HLSPlayer({ url, trks }) {
           ></path>
         </svg>
       </SkipButtonBackward>
-      <SkipButtonForward ref={forwardRef}>
+      <SkipButtonForward
+        id="ahead"
+        ref={forwardRef}
+        onTouchStart={handleDblTap}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 64 64"
