@@ -670,7 +670,7 @@ body {
 }
 .video-js .vjs-play-control {
   cursor: pointer;
-  transform: translateX(-6%);
+  transform: translateX(-15%);
   z-index: 1;
 }
 .video-js .vjs-skip-backward-10 {
@@ -707,7 +707,7 @@ body {
   .video-js .vjs-play-control {
     cursor: pointer;
     position: relative;
-    transform: translateX(-10%);
+    transform: translateX(-19%);
   }
 }
 
@@ -729,6 +729,11 @@ body {
   .video-js .vjs-play-control {
     cursor: pointer;
     position: relative;
-    transform: translateX(-15%);
+    transform: translateX(-19%);
   }
+}
+
+
+.video-js .vjs-fullscreen-control{
+  display: none;
 }
