@@ -5,7 +5,7 @@ const Div = styled.div`
     grid-template-rows: 500px 100px auto;
     padding-top: 5px;
     @media (max-width: 800px) {
-        grid-template-rows: 280px 1fr 150px;
+        grid-template-rows: 280px 1fr 250px;
     }
 `;
 function StyledEpisodes({ children }) {
