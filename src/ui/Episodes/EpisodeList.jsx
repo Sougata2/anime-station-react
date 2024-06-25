@@ -5,6 +5,8 @@ const StyledEpisodeList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  overflow: scroll;
+  padding-bottom: 10px;
 `
 
 function EpisodeList({data}) {

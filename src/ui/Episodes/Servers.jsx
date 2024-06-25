@@ -7,8 +7,7 @@ import useEpisode from "../../features/Episodes/useEpisode";
 
 const StyledServers = styled.div`
   font-family: "Poetsen One", sans-serif;
-  padding-top: 10px;
-  margin: auto 0;
+  padding: 10px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
