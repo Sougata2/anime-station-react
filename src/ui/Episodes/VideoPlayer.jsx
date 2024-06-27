@@ -4,7 +4,8 @@ import useVideo from "../../features/Episodes/useVideo";
 import styled from "styled-components";
 import EpisodeLoader from "./EpisodeLoader";
 import { useRef } from "react";
-import Player from "./Player";
+// import Player from "./Player";
+import HlsVideoPlayer from "./HlsVideoPlayer";
 
 const PlayerContainer = styled.div`
   position: relative;
@@ -60,7 +61,8 @@ function VideoPlayer() {
         ) : (
           // <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
           // <NewPlayer src={data.sources.at(0).url} trks={data.trks} />
-          <Player url={data.sources.at(0).url} tracks={data.tracks} />
+          // <Player url={data.sources.at(0).url} tracks={data.tracks} />
+          <HlsVideoPlayer url={data.sources.at(0).url} tracks={data.tracks} />
         )}
       </PlayerContainer>
     </>
