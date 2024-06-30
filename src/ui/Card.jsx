@@ -69,9 +69,7 @@ function Card({ animeId, onClose }) {
     <StyledCard>
       <Image>{info?.poster}</Image>
       <CardBody>
-        <Title $canTakeFullWidth={!isNaN(moreInfo?.malscore)}>
-          {info?.name}
-        </Title>
+        <Title canTakeFullWidth={moreInfo?.malscore}>{info?.name}</Title>
         <Score>{moreInfo?.malscore}</Score>
         <Description>{info?.description}</Description>
         <EpisodesNumber>{info?.stats?.episodes?.sub}</EpisodesNumber>
