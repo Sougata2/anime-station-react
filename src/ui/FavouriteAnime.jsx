@@ -55,7 +55,7 @@ function FavouriteAnime({ anime }) {
             <div>
               <Label>Anilist-id:</Label> {anime.anilistId}
             </div>
-            <Trash anilistId={anime.id} />
+            <Trash id={anime.id} />
           </Body>
         </ListItem>
       </Modal.Open>
