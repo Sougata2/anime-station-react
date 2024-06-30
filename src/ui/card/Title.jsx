@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-const StyledTitle = styled.p`
+const StyledTitle = styled.div`
   position: relative;
   font-size: 20px;
   width: ${({ $canTakeFullWidth }) => ($canTakeFullWidth ? "200px" : "100%")};
   margin-top: 7px;
+  margin-bottom: 2px;
 `;
 
 function Title({ canTakeFullWidth, children }) {
