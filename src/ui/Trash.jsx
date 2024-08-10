@@ -22,7 +22,7 @@ function Trash({ id }) {
   const { deleting, isDeleting } = useDeleteFromFavourite();
   function handleClick(e) {
     e.stopPropagation();
-    deleting(id);
+    if (window.confirm("Are you sure ?")) deleting(id);
   }
   return (
     <StyledTrash disabled={isDeleting} onClick={handleClick}>
