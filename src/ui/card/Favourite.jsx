@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAddToFavourite } from "../../features/Favourite/useAddToFavourite";
 import { getFormattedTime } from "../../helper/format";
 import { useInFavourites } from "../../features/Favourite/useInFavourites";
-import { useCurrentAnime } from "../../features/AnimeInfo/useAnime";
+import { useAnimeCard } from "../../features/AnimeInfo/useAnime";
 
 import styled from "styled-components";
 import toast from "react-hot-toast";
@@ -20,7 +20,7 @@ const StyledFavourite = styled.div`
 `;
 
 function Favourite({ animeId }) {
-  const { data: { anime: { info = {} } = {} } = {} } = useCurrentAnime(animeId);
+  const { data: { anime: { info = {} } = {} } = {} } = useAnimeCard(animeId);
   const isFavourite = useInFavourites(info.id);
   const { add } = useAddToFavourite();
 
