@@ -17,7 +17,7 @@ function Favourite() {
     },
     [navigate]
   );
-  
+
   if (isPending || isRefetching) return <Spinner />;
   return (
     <>
@@ -29,9 +29,7 @@ function Favourite() {
         </Filters.Menu>
         <Filters.Window
           data={data}
-          render={(anime) => (
-            <FavouriteAnime anime={anime} key={anime.anilistId} />
-          )}
+          render={(anime) => <FavouriteAnime anime={anime} key={anime.id} />}
         />
       </Filters>
     </>
