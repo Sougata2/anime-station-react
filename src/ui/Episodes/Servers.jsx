@@ -62,90 +62,102 @@ function Servers() {
 
   return (
     <StyledServers>
-      <Row>
-        <Category>{sub?.length !== 0 && <span>Sub: </span>}</Category>
-        <ServerList>
-          {sub?.length !== 0 &&
-            sub?.map((s, i) => (
-              <Btn
-                $isactive={
-                  activeCategory === "sub" &&
-                  activeServer === servers_map[s.serverId]
-                }
-                key={i}
-                value={s.serverId}
-                onClick={(e) => {
-                  searchParam.set("server", servers_map[e.target.value]);
-                  searchParam.set("category", "sub");
-                  setSearchParam(searchParam);
-                  episode({
-                    epId,
-                    category: "sub",
-                    server: servers_map[e.target.value],
-                  });
-                }}
-              >
-                {servers_map[s.serverId]}
-              </Btn>
-            ))}
-        </ServerList>
-      </Row>
-      <Row>
-        <Category>{dub?.length !== 0 && <span>Dub: </span>}</Category>
-        <ServerList>
-          {dub?.length !== 0 &&
-            dub?.map((s, i) => (
-              <Btn
-                $isactive={
-                  activeCategory === "dub" &&
-                  activeServer === servers_map[s.serverId]
-                }
-                key={i}
-                value={s.serverId}
-                onClick={(e) => {
-                  searchParam.set("server", servers_map[e.target.value]);
-                  searchParam.set("category", "dub");
-                  setSearchParam(searchParam);
-                  episode({
-                    epId,
-                    category: "dub",
-                    server: servers_map[e.target.value],
-                  });
-                }}
-              >
-                {servers_map[s.serverId]}
-              </Btn>
-            ))}
-        </ServerList>
-      </Row>
-      <Row>
-        <Category>{raw?.length !== 0 && <span>Raw: </span>}</Category>
-        <ServerList>
-          {raw?.length !== 0 &&
-            raw?.map((s, i) => (
-              <Btn
-                $isactive={
-                  activeCategory === "raw" &&
-                  activeServer === servers_map[s.serverId]
-                }
-                key={i}
-                value={s.serverId}
-                onClick={(e) => {
-                  searchParam.set("server", servers_map[e.target.value]);
-                  searchParam.set("category", "raw");
-                  setSearchParam(searchParam);
-                  episode({
-                    epId,
-                    category: "raw",
-                    server: servers_map[e.target.value],
-                  });
-                }}
-              >
-                {servers_map[s.serverId]}
-              </Btn>
-            ))}
-        </ServerList>
-      </Row>
+      {sub?.length !== 0 && (
+        <Row>
+          <Category>
+            <span>Sub: </span>
+          </Category>
+          <ServerList>
+            {sub?.length !== 0 &&
+              sub?.map((s, i) => (
+                <Btn
+                  $isactive={
+                    activeCategory === "sub" &&
+                    activeServer === servers_map[s.serverId]
+                  }
+                  key={i}
+                  value={s.serverId}
+                  onClick={(e) => {
+                    searchParam.set("server", servers_map[e.target.value]);
+                    searchParam.set("category", "sub");
+                    setSearchParam(searchParam);
+                    episode({
+                      epId,
+                      category: "sub",
+                      server: servers_map[e.target.value],
+                    });
+                  }}
+                >
+                  {servers_map[s.serverId]}
+                </Btn>
+              ))}
+          </ServerList>
+        </Row>
+      )}
+      {dub?.length !== 0 && (
+        <Row>
+          <Category>
+            <span>Dub: </span>
+          </Category>
+          <ServerList>
+            {dub?.length !== 0 &&
+              dub?.map((s, i) => (
+                <Btn
+                  $isactive={
+                    activeCategory === "dub" &&
+                    activeServer === servers_map[s.serverId]
+                  }
+                  key={i}
+                  value={s.serverId}
+                  onClick={(e) => {
+                    searchParam.set("server", servers_map[e.target.value]);
+                    searchParam.set("category", "dub");
+                    setSearchParam(searchParam);
+                    episode({
+                      epId,
+                      category: "dub",
+                      server: servers_map[e.target.value],
+                    });
+                  }}
+                >
+                  {servers_map[s.serverId]}
+                </Btn>
+              ))}
+          </ServerList>
+        </Row>
+      )}
+      {raw?.length !== 0 && (
+        <Row>
+          <Category>
+            <span>Raw: </span>
+          </Category>
+          <ServerList>
+            {raw?.length !== 0 &&
+              raw?.map((s, i) => (
+                <Btn
+                  $isactive={
+                    activeCategory === "raw" &&
+                    activeServer === servers_map[s.serverId]
+                  }
+                  key={i}
+                  value={s.serverId}
+                  onClick={(e) => {
+                    searchParam.set("server", servers_map[e.target.value]);
+                    searchParam.set("category", "raw");
+                    setSearchParam(searchParam);
+                    episode({
+                      epId,
+                      category: "raw",
+                      server: servers_map[e.target.value],
+                    });
+                  }}
+                >
+                  {servers_map[s.serverId]}
+                </Btn>
+              ))}
+          </ServerList>
+        </Row>
+      )}
     </StyledServers>
   );
 }
