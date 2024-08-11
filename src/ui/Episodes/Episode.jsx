@@ -14,7 +14,7 @@ const Box = styled.div`
   padding-left: 10px;
   border-radius: 20px;
   /* background-color: ${({ $isDark }) => ($isDark ? "#3333" : "")}; */
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   ${({ $isactive }) =>
     $isactive
       ? css`
@@ -48,14 +48,22 @@ function Episode({ episode }) {
 
   const { title, episodeId, isFiller, number } = episode;
 
-  function handleClick() {
+  function handleClick(e) {
+    let activeItem;
+    if (e.target.id === "episode-box") activeItem = e.target;
+    else activeItem = e.target.closest("#episode-box");
+    activeItem.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
     searchParams.set("epId", episodeId);
     setSearchParms(searchParams);
     mutate({ epId: episodeId, category, server });
   }
   return (
     <Box
-      $isDark={number % 2 !== 0}
+      // $isDark={number % 2 !== 0}
+      id="episode-box"
       onClick={handleClick}
       $isactive={searchParams.get("epId") === episodeId}
     >
