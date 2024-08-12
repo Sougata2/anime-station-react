@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 import useEpisode from "../../features/Episodes/useEpisode";
 import styled, { css } from "styled-components";
+import { useEffect, useRef } from "react";
 
 const Box = styled.div`
   cursor: pointer;
@@ -42,20 +43,26 @@ const IsFiller = styled.div`
 `;
 function Episode({ episode }) {
   const [searchParams, setSearchParms] = useSearchParams();
+  const episodeRef = useRef();
   const category = searchParams.get("category");
   const server = searchParams.get("server");
   const { mutate } = useEpisode();
 
   const { title, episodeId, isFiller, number } = episode;
 
+  useEffect(
+    function () {
+      if (searchParams.get("epId") === episodeId) {
+        episodeRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    },
+    [episodeId, searchParams]
+  );
+
   function handleClick(e) {
-    let activeItem;
-    if (e.target.id === "episode-box") activeItem = e.target;
-    else activeItem = e.target.closest("#episode-box");
-    activeItem.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
     searchParams.set("epId", episodeId);
     setSearchParms(searchParams);
     mutate({ epId: episodeId, category, server });
@@ -63,7 +70,7 @@ function Episode({ episode }) {
   return (
     <Box
       // $isDark={number % 2 !== 0}
-      id="episode-box"
+      ref={episodeRef}
       onClick={handleClick}
       $isactive={searchParams.get("epId") === episodeId}
     >
