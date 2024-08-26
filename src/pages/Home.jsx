@@ -1,10 +1,15 @@
-import Heading from "../ui/Heading";
-import React from "react";
+import useHomePage from "../features/Homepage/useHomePage";
+import SpotLightAnimes from "../ui/Home/SpotLightAnimes";
+import Spinner from "../ui/Spinner";
 
 function Home() {
+  const { isLoading, isRefetching, data } = useHomePage();
+  if (isLoading || isRefetching) return <Spinner />;
+  console.log(data.spotlightAnimes);
+
   return (
     <>
-      <Heading>Home</Heading>
+      <SpotLightAnimes animes={data.spotlightAnimes} />
     </>
   );
 }

@@ -25,12 +25,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route
-              index
-              element={<Navigate replace to={"recent-episodes"} />}
-            />
+            <Route path="/" element={<Home />} />
             <Route path="recent-episodes" element={<RecentEpisodes />} />
-            <Route path="home" element={<Home />} />
             <Route path="favourite" element={<Favourite />} />
             <Route path="anime/:id" element={<Anime />} />
             <Route path="episodes/:id" element={<Episodes />} />

@@ -44,10 +44,17 @@ async function getEpisodeServers(epId) {
   return data;
 }
 
+async function getHomePage() {
+  const res = await fetch(BASE_URL + "anime/home");
+  const data = await res.json();
+  return data;
+}
+
 export {
   reacentEpisodesApi,
   animeAboutInfoApi,
   getEpisodes,
   getEpisodeStreamingLinks,
   getEpisodeServers,
+  getHomePage,
 };

@@ -104,7 +104,7 @@ function Header() {
         <Bar></Bar>
       </ToggleBtn>
       <NavItems onClick={(e) => setIsOpen(!isOpen)}>
-        <NavItem to={"/home"}>Home</NavItem>
+        <NavItem to={"/"}>Home</NavItem>
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
         <NavItem to={"/about"}>About</NavItem>
