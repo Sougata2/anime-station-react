@@ -13,4 +13,8 @@ function getFormattedTime() {
   return timeStamp;
 }
 
-export { getFormattedTime };
+function formatName(name, length=25) {
+  return name.length < length ? name : name.slice(0, length) + "...";
+}
+
+export { getFormattedTime, formatName };

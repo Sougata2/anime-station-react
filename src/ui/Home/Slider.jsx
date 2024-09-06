@@ -1,19 +1,29 @@
 import { useState } from "react";
+
+import SlideText from "./SlideText";
 import styled, { css } from "styled-components";
 import Modal from "../Modal";
 import Card from "../Card";
-import SlideText from "./SlideText";
 
 const StyledSlider = styled.div`
   position: relative;
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   border-radius: 10px;
+  background-color: rgba(249, 248, 248, 0.99);
 `;
-
-const SlideImage = styled.img`
-  width: 100%;
+const SlideImage = styled.div`
+  background-image: url(${({ $src }) => $src});
+  background-size: cover;
+  box-shadow: inset 120px -70px 70px  rgba(249, 248, 248, 0.99);
+  width: 75%;
   height: 100%;
+  background-position: right;
+  @media (max-width: 800px) {
+    background-size: cover;
+    background-position: center;
+    width: 90%;
+  }
 `;
 const StyledSlide = styled.div`
   height: 500px;
@@ -23,7 +33,8 @@ const StyledSlide = styled.div`
   ${({ $active }) =>
     $active
       ? css`
-          display: block;
+          display: flex;
+          flex-direction: row-reverse;
         `
       : css`
           display: none;
@@ -93,7 +104,7 @@ function Slider({ animes }) {
           <Modal key={anime.id}>
             <Modal.Open>
               <StyledSlide $active={activeSlide === index}>
-                <SlideImage src={anime.poster} alt="" />
+                <SlideImage $src={anime.poster} />
                 <SlideText
                   name={anime.name}
                   description={anime.description}
