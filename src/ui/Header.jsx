@@ -107,7 +107,7 @@ function Header() {
         <NavItem to={"/"}>Home</NavItem>
         <NavItem to={"/recent-episodes"}>Recent</NavItem>
         <NavItem to={"/favourite"}>Favourite</NavItem>
-        <NavItem to={"/about"}>About</NavItem>
+        <NavItem to={"/search"}>Search</NavItem>
         <NavItem to={"/login"}>{user ? "Profile" : "Login"}</NavItem>
       </NavItems>
     </NavBar>

@@ -7,7 +7,7 @@ import Favourite from "./pages/Favourite";
 import AppLayout from "./ui/AppLayout";
 import Episodes from "./pages/Episodes";
 import Home from "./pages/Home";
-import About from "./pages/About";
+import Search from "./pages/Search";
 import Login from "./pages/Login";
 import Anime from "./pages/Anime";
 
@@ -30,7 +30,7 @@ function App() {
             <Route path="favourite" element={<Favourite />} />
             <Route path="anime/:id" element={<Anime />} />
             <Route path="episodes/:id" element={<Episodes />} />
-            <Route path="about" element={<About />} />
+            <Route path="search" element={<Search />} />
             <Route path="login" element={<Login />} />
           </Route>
         </Routes>
