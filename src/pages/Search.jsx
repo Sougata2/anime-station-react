@@ -1,5 +1,4 @@
 import React, { useState, useTransition } from "react";
-import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/url";
 
 import Suggestions from "../ui/Search/Suggestions";
@@ -47,7 +46,29 @@ function Search() {
   const [suggestions, setSuggestions] = useState([]);
   const [page, setPage] = useState(1);
   const [results, setResults] = useState([]);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(true);
+
+  const nextPage = async () => {
+    setIsLoading(true);
+    setPage((prevPage) => prevPage + 1);
+    const url = BASE_URL + `anime/search?q=${query}&page=${page + 1}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    setResults(data.animes);
+    setIsLoading(false);
+    setHasNextPage(data.hasNextPage);
+  };
+  const prevPage = async () => {
+    setIsLoading(true);
+    setPage((prevPage) => prevPage - 1);
+    const url = BASE_URL + `anime/search?q=${query}&page=${page - 1}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    setResults(data.animes);
+    setIsLoading(false);
+    setHasNextPage(data.hasNextPage);
+  };
 
   function handleChange(e) {
     setQuery(e.target.value);
@@ -69,6 +90,7 @@ function Search() {
     const data = await response.json();
     setResults(data.animes);
   }
+
   return (
     <>
       <Heading>Search</Heading>
@@ -77,7 +99,14 @@ function Search() {
         <SearchButton onClick={handleClick}>Search</SearchButton>
       </InputBox>
       <Suggestions suggestions={suggestions} isPending={isPending} />
-      <Results results={results} />
+      <Results
+        page={page}
+        results={results}
+        isLoading={isLoading}
+        handlePrev={prevPage}
+        handleNext={nextPage}
+        hasNextPage={hasNextPage}
+      />
     </>
   );
 }
