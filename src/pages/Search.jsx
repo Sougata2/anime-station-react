@@ -52,43 +52,41 @@ function Search() {
   const nextPage = async () => {
     setIsLoading(true);
     setPage((prevPage) => prevPage + 1);
-    const url = BASE_URL + `anime/search?q=${query}&page=${page + 1}`;
+    const url = BASE_URL + `search?q=${query}&page=${page + 1}`;
     const response = await fetch(url);
     const data = await response.json();
-    setResults(data.animes);
+    setResults(data.data.animes);
     setIsLoading(false);
-    setHasNextPage(data.hasNextPage);
+    setHasNextPage(data.data.hasNextPage);
   };
   const prevPage = async () => {
     setIsLoading(true);
     setPage((prevPage) => prevPage - 1);
-    const url = BASE_URL + `anime/search?q=${query}&page=${page - 1}`;
+    const url = BASE_URL + `search?q=${query}&page=${page - 1}`;
     const response = await fetch(url);
     const data = await response.json();
-    setResults(data.animes);
+    setResults(data.data.animes);
     setIsLoading(false);
-    setHasNextPage(data.hasNextPage);
+    setHasNextPage(data.data.hasNextPage);
   };
 
   function handleChange(e) {
     setQuery(e.target.value);
     if (e.target.value.length < 2) return setSuggestions([]);
     startTransition(async () => {
-      const response = await fetch(
-        BASE_URL + "anime/search/suggest?q=" + query
-      );
+      const response = await fetch(BASE_URL + "search/suggestion?q=" + query);
       const data = await response.json();
-      setSuggestions(data.suggestions);
+      setSuggestions(data.data.suggestions);
     });
   }
 
   async function handleClick() {
     setSuggestions([]);
     if (query.length === 0) return;
-    const url = BASE_URL + `anime/search?q=${query}&page=${page}`;
+    const url = BASE_URL + `search?q=${query}&page=${page}`;
     const response = await fetch(url);
     const data = await response.json();
-    setResults(data.animes);
+    setResults(data.data.animes);
   }
 
   return (

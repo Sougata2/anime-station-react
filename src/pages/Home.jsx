@@ -18,10 +18,10 @@ function Home() {
 
   return (
     <StyledHome>
-      <SpotLightAnimes animes={data.spotlightAnimes} />
-      <Trendings animes={data.trendingAnimes} />
-      <LatestEpisodes animes={data.latestEpisodeAnimes} />
-      <Upcomings animes={data.topUpcomingAnimes} />
+      <SpotLightAnimes animes={data.data.spotlightAnimes} />
+      <Trendings animes={data.data.trendingAnimes} />
+      <LatestEpisodes animes={data.data.latestEpisodeAnimes} />
+      <Upcomings animes={data.data.topUpcomingAnimes} />
     </StyledHome>
   );
 }

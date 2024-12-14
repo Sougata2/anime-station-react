@@ -49,7 +49,7 @@ function Servers() {
   const activeCategory = searchParam.get("category");
 
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
-  const { isPending, isRefetching, data } = useServers(epId);
+  const { isPending, isRefetching, data: { data } = {} } = useServers(epId);
 
   if (isPending || isRefetching || gettingEpisode)
     return (

@@ -69,7 +69,7 @@ function RecentEpisodes() {
   const [offset, setOffset] = useState(0);
   const [showDateCounter, setShowDateCounter] = useState(false);
   const queryClient = useQueryClient();
-  const { isPending, data: { scheduledAnimes } = [] } = useRecentAnime(offset);
+  const { isPending, data } = useRecentAnime(offset);
 
   function toggleDateCounter() {
     setShowDateCounter(!showDateCounter);
@@ -102,7 +102,7 @@ function RecentEpisodes() {
       </PageHeader>
       <div>
         <List>
-          {scheduledAnimes?.map((anime) => (
+          {data.data.scheduledAnimes?.map((anime) => (
             <RecentEpisode anime={anime} key={anime.id} />
           ))}
         </List>

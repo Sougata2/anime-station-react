@@ -122,9 +122,7 @@ function About({ data }) {
         </StyledStats>
         <ButtonGrp>
           <button onClick={() => navigate(`/episodes/${id}`)}>Watch Now</button>
-          <FavouriteBtn
-            data={{ id, name, poster, anilistId }}
-          />
+          <FavouriteBtn data={{ id, name, poster, anilistId }} />
         </ButtonGrp>
         <Description>{description}</Description>
       </StyledInfo>

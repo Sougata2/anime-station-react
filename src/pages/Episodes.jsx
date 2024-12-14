@@ -13,7 +13,7 @@ import Spinner from "../ui/Spinner";
 function Episodes() {
   const { id: animeId } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isLoading, isRefetching, data } = useEpisodes();
+  const { isLoading, isRefetching, data: { data } = {} } = useEpisodes();
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
   useEffect(
     function () {
@@ -26,10 +26,10 @@ function Episodes() {
           id = data.episodes.at(0).episodeId;
         }
         searchParams.set("epId", id);
-        searchParams.set("server", "vidstreaming");
+        searchParams.set("server", "hd-1");
         searchParams.set("category", "sub");
         setSearchParams(searchParams);
-        episode({ epId: id, category: "sub", server: "vidstreaming" });
+        episode({ epId: id, category: "sub", server: "hd-1" });
       }
     },
     [data, searchParams, setSearchParams, episode, animeId]

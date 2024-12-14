@@ -3,19 +3,19 @@ import { getDate } from "./dateApi";
 
 async function reacentEpisodesApi(offset) {
   const dateString = getDate(offset);
-  const resp = await fetch(BASE_URL + "anime/schedule?date=" + dateString);
+  const resp = await fetch(BASE_URL + "schedule?date=" + dateString);
   const data = await resp.json();
   return data;
 }
 
 async function animeAboutInfoApi(animeId) {
-  const resp = await fetch(BASE_URL + "anime/info?id=" + animeId);
+  const resp = await fetch(BASE_URL + "anime/" + animeId);
   const data = await resp.json();
   return data;
 }
 
 async function getEpisodes(animeId) {
-  const resp = await fetch(BASE_URL + "anime/episodes/" + animeId);
+  const resp = await fetch(BASE_URL + `anime/${animeId}/episodes`);
   const data = await resp.json();
   return data;
 }
@@ -23,29 +23,24 @@ async function getEpisodes(animeId) {
 async function getEpisodeStreamingLinks(
   episodeId,
   categoryName = "sub",
-  serverName = "vidstreaming"
+  serverName = "hd-1"
 ) {
   const resp = await fetch(
     BASE_URL +
-      "anime/episode-srcs?id=" +
-      episodeId +
-      "&server=" +
-      serverName +
-      "&category=" +
-      categoryName
+      `episode/sources?animeEpisodeId=${episodeId}?server=${serverName}&category=${categoryName}`
   );
   const data = await resp.json();
   return data;
 }
 
 async function getEpisodeServers(epId) {
-  const resp = await fetch(BASE_URL + "anime/servers?episodeId=" + epId);
+  const resp = await fetch(BASE_URL + `episode/servers?animeEpisodeId=${epId}`);
   const data = await resp.json();
   return data;
 }
 
 async function getHomePage() {
-  const res = await fetch(BASE_URL + "anime/home");
+  const res = await fetch(BASE_URL + "home");
   const data = await res.json();
   return data;
 }

@@ -3,21 +3,21 @@ import ErrorVideo from "./ErrorVideo";
 import useVideo from "../../features/Episodes/useVideo";
 import styled from "styled-components";
 import EpisodeLoader from "./EpisodeLoader";
-import {useRef} from "react";
+import { useRef } from "react";
 // import Player from "./Player";
 import HlsVideoPlayer from "./HlsVideoPlayer";
 
 const PlayerContainer = styled.div`
-    position: relative;
-    display: inline-block;
-    border-radius: 10px;
-    overflow: hidden;
-    width: 1000px;
-    margin: 0 auto;
-    @media (max-width: 800px) {
-        width: 100%;
-        height: 280px;
-    }
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 1000px;
+  margin: 0 auto;
+  @media (max-width: 800px) {
+    width: 100%;
+    height: 280px;
+  }
 `;
 
 // const ExpandButton = styled.div`
@@ -30,43 +30,43 @@ const PlayerContainer = styled.div`
 // `;
 
 function VideoPlayer() {
-    // const [fullscreen, setFullscreen] = useState(false);
-    const windowRef = useRef(null);
-    const {isPending, isRefetching, data} = useVideo();
+  // const [fullscreen, setFullscreen] = useState(false);
+  const windowRef = useRef(null);
+  const { isPending, isRefetching, data: { data } = {} } = useVideo();
 
-    // function handleFullscreen() {
-    //   if (fullscreen) {
-    //     setFullscreen(false);
-    //     document.exitFullscreen();
-    //   } else {
-    //     setFullscreen(true);
-    //     windowRef.current.requestFullscreen();
-    //   }
-    // }
+  // function handleFullscreen() {
+  //   if (fullscreen) {
+  //     setFullscreen(false);
+  //     document.exitFullscreen();
+  //   } else {
+  //     setFullscreen(true);
+  //     windowRef.current.requestFullscreen();
+  //   }
+  // }
 
-    if (isPending || isRefetching) return <EpisodeLoader/>;
+  if (isPending || isRefetching) return <EpisodeLoader />;
 
-    return (
-        <>
-            <PlayerContainer ref={windowRef}>
-                {/* <ExpandButton className="full-screen" onClick={handleFullscreen}>
+  return (
+    <>
+      <PlayerContainer ref={windowRef}>
+        {/* <ExpandButton className="full-screen" onClick={handleFullscreen}>
           {fullscreen ? (
             <i className="fas fa-compress-alt"></i>
           ) : (
             <i className="fa-solid fa-up-right-and-down-left-from-center"></i>
           )}
         </ExpandButton> */}
-                {Object.keys(data).includes("status") ? (
-                    <ErrorVideo/>
-                ) : (
-                    // <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
-                    // <NewPlayer src={data.sources.at(0).url} trks={data.trks} />
-                    // <Player url={data.sources.at(0).url} tracks={data.tracks} />
-                    <HlsVideoPlayer url={data.sources.at(0)?.url} tracks={data.tracks}/>
-                )}
-            </PlayerContainer>
-        </>
-    );
+        {Object.keys(data).includes("status") ? (
+          <ErrorVideo />
+        ) : (
+          // <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
+          // <NewPlayer src={data.sources.at(0).url} trks={data.trks} />
+          // <Player url={data.sources.at(0).url} tracks={data.tracks} />
+          <HlsVideoPlayer url={data.sources.at(0)?.url} tracks={data.tracks} />
+        )}
+      </PlayerContainer>
+    </>
+  );
 }
 
 export default VideoPlayer;

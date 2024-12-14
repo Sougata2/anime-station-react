@@ -51,7 +51,7 @@ function Card({ animeId, onClose }) {
   const {
     isPending,
     isRefetching,
-    data: { anime: { info = {}, moreInfo = {} } = {} } = {},
+    data: { data: { anime: { info = {}, moreInfo = {} } = {} } = {} } = {},
   } = useAnimeCard(animeId);
 
   useEffect(

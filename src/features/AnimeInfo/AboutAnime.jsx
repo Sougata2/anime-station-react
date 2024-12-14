@@ -10,7 +10,7 @@ function AboutAnime() {
   const { id } = useParams();
   const { isPending, data } = useCurrentAnime(id);
   if (isPending) return <Spinner />;
-  const { anime, recommendedAnimes, relatedAnimes } = data;
+  const { anime, recommendedAnimes, relatedAnimes } = data.data;
   return (
     <>
       <About data={anime} />
