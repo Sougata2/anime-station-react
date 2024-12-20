@@ -32,7 +32,7 @@ const PlayerContainer = styled.div`
 function VideoPlayer() {
   // const [fullscreen, setFullscreen] = useState(false);
   const windowRef = useRef(null);
-  const { isPending, isRefetching, data: { data } = {} } = useVideo();
+  const { isPending, isRefetching, data } = useVideo();
 
   // function handleFullscreen() {
   //   if (fullscreen) {
@@ -62,7 +62,10 @@ function VideoPlayer() {
           // <HLSPlayer url={data.sources.at(0).url} trks={data.tracks} />
           // <NewPlayer src={data.sources.at(0).url} trks={data.trks} />
           // <Player url={data.sources.at(0).url} tracks={data.tracks} />
-          <HlsVideoPlayer url={data.sources.at(0)?.url} tracks={data.tracks} />
+          <HlsVideoPlayer
+            url={data.data.sources.at(0)?.url}
+            tracks={data.data.tracks}
+          />
         )}
       </PlayerContainer>
     </>

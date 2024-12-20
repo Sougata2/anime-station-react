@@ -49,27 +49,25 @@ function Servers() {
   const activeCategory = searchParam.get("category");
 
   const { mutate: episode, isPending: gettingEpisode } = useEpisode();
-  const { isPending, isRefetching, data: { data } = {} } = useServers(epId);
+  const { isPending, isRefetching, data } = useServers(epId);
 
-  if (isPending || isRefetching || gettingEpisode)
+  if (isPending || isRefetching || gettingEpisode || data.status === 400)
     return (
       <div style={{ fontFamily: '"Poetsen One", sans-serif' }}>
         Loading Servers...
       </div>
     );
 
-  const { dub, raw, sub } = data;
-
   return (
     <StyledServers>
-      {sub?.length !== 0 && (
+      {data.data.sub?.length !== 0 && (
         <Row>
           <Category>
             <span>Sub: </span>
           </Category>
           <ServerList>
-            {sub?.length !== 0 &&
-              sub?.map((s, i) => (
+            {data.data.sub?.length !== 0 &&
+              data.data.sub?.map((s, i) => (
                 <Btn
                   $isactive={
                     activeCategory === "sub" &&
@@ -94,14 +92,14 @@ function Servers() {
           </ServerList>
         </Row>
       )}
-      {dub?.length !== 0 && (
+      {data.data.dub?.length !== 0 && (
         <Row>
           <Category>
             <span>Dub: </span>
           </Category>
           <ServerList>
-            {dub?.length !== 0 &&
-              dub?.map((s, i) => (
+            {data.data.dub?.length !== 0 &&
+              data.data.dub?.map((s, i) => (
                 <Btn
                   $isactive={
                     activeCategory === "dub" &&
@@ -126,14 +124,14 @@ function Servers() {
           </ServerList>
         </Row>
       )}
-      {raw?.length !== 0 && (
+      {data.data.raw?.length !== 0 && (
         <Row>
           <Category>
             <span>Raw: </span>
           </Category>
           <ServerList>
-            {raw?.length !== 0 &&
-              raw?.map((s, i) => (
+            {data.data.raw?.length !== 0 &&
+              data.data.raw?.map((s, i) => (
                 <Btn
                   $isactive={
                     activeCategory === "raw" &&
