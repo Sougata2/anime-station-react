@@ -20,7 +20,8 @@ const StyledFavourite = styled.div`
 `;
 
 function Favourite({ animeId }) {
-  const { data: { anime: { info = {} } = {} } = {} } = useAnimeCard(animeId);
+  const { data: { data: { anime: { info = {} } = {} } = {} } = {} } =
+    useAnimeCard(animeId);
   const isFavourite = useInFavourites(info.id);
   const { add } = useAddToFavourite();
 
